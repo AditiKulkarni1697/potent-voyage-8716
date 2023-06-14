@@ -1,0 +1,42 @@
+
+
+#chart-div{
+    margin-left: 18%;
+    margin-top: 1%;
+    margin-right: 4%;
+    color: rgb(115, 96, 123);
+    background-color: rgb(255, 255, 255);;
+}
+#myChart{
+    margin-right: 4%;
+    border: none;
+    max-height: 400px;
+    font-weight: bolder;
+    font-size: 80px;
+    
+}
+
+
+#chart-div #myChart1,#myChart2{
+    
+    margin-left: 40%;
+}
+
+
+#range{
+    margin-left: 18%;
+    margin-top: 5%;
+    width: 15%;
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+
+  
+  
+  
+  
+  
+  
+  

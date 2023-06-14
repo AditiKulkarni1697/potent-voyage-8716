@@ -1,0 +1,51 @@
+
+let month=[31,28,31,30,31,30,31,31,30,31,30]
+let startmonth=Number(start.format('MM'))
+let endmonth=Number(end.format('MM'))
+
+let arr=[]
+console.log(range.value)
+
+let startdate=Number(start.format('DD'))
+let enddate=Number(end.format('DD'))
+
+
+for(let i=startmonth;i<=endmonth;i++)
+
+{
+    let date
+    (startmonth==endmonth)?date=enddate:date=month[i-1]
+    for(let j=startdate;j<=date;j++)
+    {
+         arr.push(j+"/"+i)
+    }
+    startdate=1
+   
+}
+console.log(arr)
+
+bargraph(arr)
+
+
+
+
+
+
+
+let no=document.getElementById("no")
+let check=document.getElementById("check")
+
+no.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let arr=[]
+  for(let i=1;i<=check.value;i++)
+  {
+       arr.push(i)
+  }
+
+ 
+
+  bargraph(arr)
+  console.log(arr)
+
+})
