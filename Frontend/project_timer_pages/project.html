@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./project.css" />
+    <title>Project</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Projects</h1>
+    </nav>
+
+    <aside>
+      <ul>
+        <li onclick="openModal()">Create Project <span>+</span></li>
+      </ul>
+    </aside>
+
+    <main>
+      <h2>Projects</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Created At</th>
+            <th>Create Task</th>
+          </tr>
+        </thead>
+        <tbody id="projectList">
+          <!-- Populated dynamically with JavaScript -->
+        </tbody>
+      </table>
+
+      <!-- Modal -->
+      <dialog id="modal">
+        <div class="modal-content">
+          <span class="modal-close" onclick="closeModal()">&times;</span>
+          <h2>Create Project</h2>
+          <form id="modalCreateProjectForm">
+            <label for="modalName">Name:</label>
+            <input type="text" id="modalName" name="modalName" required />
+            <label for="modalDescription">Description:</label>
+            <textarea
+              id="modalDescription"
+              name="modalDescription"
+              required
+            ></textarea>
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </dialog>
+
+      <script>
+        const createProjectModal = document.getElementById("modal");
+        // JavaScript Code
+        const openModal = () => {
+          console.log(createProjectModal);
+          createProjectModal.showModal();
+        };
+
+        const closeModal = () => {
+          createProjectModal.close();
+        };
+
+        // Add your additional JavaScript code here
+      </script>
+    </main>
+  </body>
+</html>
