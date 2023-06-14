@@ -1,0 +1,7 @@
+.nav{
+    display: flex;
+}
+.nav img{
+    width:80% ;
+    height: 90px;
+}
