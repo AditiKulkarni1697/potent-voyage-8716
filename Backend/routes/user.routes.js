@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { UserModel } = require("../models/user.model");
+const { BlacklistModel } = require("../models/blacklist.model");
 const userRoute = express.Router();
 
 
@@ -9,8 +10,6 @@ userRoute.post("/register", async(req,res)=>{
   
     try {
         const {firstName, lastName , email, password} = req.body;
-
-        console.log(req.body)
 
         // Check if user already present or not 
         const isUserPresent = await UserModel.findOne({email});
@@ -41,7 +40,7 @@ userRoute.post("/login",async(req,res)=>{
 
         // check user present or not
 
-        const isUserPresent = await UserModel.finOne({email});
+        const isUserPresent = await UserModel.findOne({email});
 
         // if user not presnt ask him/her to register first
         if(!isUserPresent){
@@ -56,11 +55,37 @@ userRoute.post("/login",async(req,res)=>{
             return res.status(400).send({message:"Invalid Credential"})
         }
 
-        const accessToken = jwt.sign({userID:isUserPresent._id},process.env.accessSecretKey)
+        const accessToken = jwt.sign({userId:isUserPresent._id},process.env.accessSecretKey)
         res.cookie("accessToken",accessToken)
+
+        const refreshToken = jwt.sign({userId:isUserPresent._id},process.env.refreshSecretKey)
+        res.cookie("refreshToken",refreshToken)
+
+        res.status(200).send({message:"login successfull",accessToken : accessToken, refreshToken: refreshToken})
+       
 
     } catch (error) {
         res.status(400).send({message:error.message, errorFrom : "loginRoute"})
+    }
+})
+
+
+userRoute.get("/logout",async(req,res)=>{
+    try {
+        const {accessToken, refreshToken} = req?.cookies
+
+        const blacklistAccessToken = BlacklistModel({token:accessToken}) 
+        const blacklistRefreshToken = BlacklistModel({token:refreshToken}) 
+
+        await blacklistAccessToken.save();
+        await blacklistRefreshToken.save()
+
+        res.clearCookie("accessToken");
+        res.clearCookie("refreshToken");
+
+        res.status(200).send({message: "Logout Successfull"})
+    } catch (error) {
+        res.status(400).send({message:error.message, errorFrom : "logoutRoute"})
     }
 })
 
