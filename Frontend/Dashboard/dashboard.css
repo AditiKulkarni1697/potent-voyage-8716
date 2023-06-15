@@ -1,38 +1,105 @@
 
+*{
+    
+ 
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    
 
-#chart-div{
-    margin-left: 18%;
-    margin-top: 1%;
-    margin-right: 4%;
-    color: rgb(115, 96, 123);
-    background-color: rgb(255, 255, 255);;
 }
+.body{
+    font-family: 'Space Grotesk', sans-serif;
+
+}
+
+#main-content-div{
+    display: flex;
+}
+
+h3,p{
+   padding-top: 5px;
+}
+
+p{
+    font-weight: 100;
+}
+#chart-div{
+    
+    margin-top: 1%;
+    
+   
+    background-color:#f7eae9;
+    font-family: 'Space Grotesk', sans-serif;;
+}
+
+#link-div{
+    width: 15%;
+    position: fixed;
+    background-color: rgb(34, 10, 46);;
+    height: 100%;
+    color: rgb(235, 231, 235);
+    padding-left: 20px;
+   
+   
+}
+#body-div{
+    width: 84%;
+    margin-left: 16%;
+    
+}
+
 #myChart{
     margin-right: 4%;
     border: none;
-    max-height: 400px;
+    max-height: 300px;
     font-weight: bolder;
     font-size: 80px;
+
     
 }
 
 
 #chart-div #myChart1,#myChart2{
     
-    margin-left: 40%;
+    margin-left: 60%;
+}
+
+#chart-div #myChart1{
+    width: 10%;
+   
 }
 
 
-#range{
-    margin-left: 18%;
+#chart-div #range{
+margin-left: 1%;
     margin-top: 5%;
-    width: 15%;
+    width: 20%;
     text-align: center;
     padding: 10px 10px;
     border-radius: 10px;
 }
 
+#nav-div{
+    display: flex;
+    padding-left: 2%;
+   
+    justify-content: space-between;
+}
 
+#nav-div-rightone{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+#nav-div-leftone{
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+    margin-right: 5%;
+
+}
   
   
   

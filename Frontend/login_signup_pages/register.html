@@ -34,16 +34,16 @@
 
     <div class="container">
         <h2>Registration Form</h2>
-        <button class="signUpwithG">
+        <a class="signUpwithG" href="/auth/google">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google Icon" class="googleImg"/>
           <p>Signup with Google</p>
-        </button>
+        </a>
 
         <div class="option">
             <span >---------------------- OR ----------------------</span>
         </div>
 
-        <form action="">
+        <div >
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
     
@@ -59,14 +59,16 @@
         <label for="confirm-password">Confirm Password:</label>
         <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
     
-        <input type="submit" value="Submit" class="btn-submit">
+        <!-- <input type="submit" value="Submit" class="btn-submit"> -->
+        <button class="btn-submit" onclick="onsignup()"> Signup</button>
         <div class="login-link">
           Already have an account? <a href="./login.html">Login</a>
         </div>
-    </form>
+    </div>
  </div>
    </div>
 
 </body>
+<!-- <script src="../../Backend/routes//register.js"></script> -->
 <script src="register.js"></script>
 </html>

@@ -1,7 +1,7 @@
 var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 
 var yValues = [55, 49, 44, 24, 45,];
-var barColors = ` #C95EBE`;
+var barColors = ` #8B55DD`;
 
 
 let range=document.getElementById("range")
@@ -18,7 +18,6 @@ let month=[31,28,31,30,31,30,31,31,30,31,30]
 
 
 let arr=[]
-
 
 
 
@@ -47,12 +46,18 @@ function bargraph(arr)
        
 var chartCanvas = document.getElementById("myChart");
 
+Chart.defaults.global.defaultFontStyle  = "Space Grotesk, sans-serif";
+
+
 // Check if a chart instance already exists
 if (chartCanvas.myChart !== undefined) {
   chartCanvas.myChart.destroy();
 }
 
 // Create the new chart instance
+Chart.defaults.global.defaultFontFamily = "Space Grotesk, sans-serif"; // Set the default font family
+Chart.defaults.global.defaultFontSize = 20; 
+
 chartCanvas.myChart = new Chart(chartCanvas, {
   type: "bar",
   data: {
@@ -61,8 +66,8 @@ chartCanvas.myChart = new Chart(chartCanvas, {
       {
         backgroundColor: barColors,
         data: yValues,
-        barPercentage: 0.6, // Adjust the bar width (0.8 means 80% of available space)
-        categoryPercentage: 0.9, // Adjust the space between bars (0.9 means 90% of available space)
+        barPercentage: 0.4,
+        categoryPercentage: 0.95,
       },
     ],
   },
@@ -70,14 +75,12 @@ chartCanvas.myChart = new Chart(chartCanvas, {
     scales: {
       yAxes: [
         {
-          gridLines: {
-            display: true, // Show the y-axis grid lines
-          },
+          position: "right", // Move the y-axis labels to the right
           ticks: {
-            fontSize: 16,
+            fontSize: 20,
             beginAtZero: true,
             callback: function (value, index, values) {
-              return value + "h";
+              return value + " " +"h";
             },
           },
         },
@@ -88,9 +91,10 @@ chartCanvas.myChart = new Chart(chartCanvas, {
             display: false, // Remove the x-axis grid lines
           },
           ticks: {
-            fontSize: 14,
+            fontSize: 20,
             beginAtZero: true,
           },
+          
         },
       ],
     },
@@ -103,10 +107,11 @@ chartCanvas.myChart = new Chart(chartCanvas, {
     legend: { display: false },
     title: {
       display: true,
-      text: "World Wine Production 2018",
+
     },
   },
 });
+
 
 }
 
@@ -115,16 +120,17 @@ chartCanvas.myChart = new Chart(chartCanvas, {
 new Chart("myChart1", {
   type: "doughnut",
   data: {
-    labels: xValues,
+    // labels: xValues,
     datasets: [{
-      backgroundColor: barColors,
-      data: yValues
+      backgroundColor: [`rgb(213, 208, 215)`,`#95899A`],
+      data: [70,30]
+      
     }]
   },
   options: {
     title: {
       display: true,
-      text: "World Wide Wine Production"
+      text: ""
     }
   }
 });
@@ -132,10 +138,10 @@ new Chart("myChart1", {
 new Chart("myChart2", {
   type: "doughnut",
   data: {
-    labels: xValues,
+    // labels: xValues,
     datasets: [{
-      backgroundColor: barColors,
-      data: yValues
+      backgroundColor: [`rgb(11, 131, 217)`,`rgb(158, 91, 217)`],
+      data: [95,12]
     }]
   },
   options: {
