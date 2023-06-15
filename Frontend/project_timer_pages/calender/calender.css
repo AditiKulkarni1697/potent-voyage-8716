@@ -1,3 +1,23 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+ 
+body {
+    display: flex;
+    background: #ef62da;
+    min-height: 100vh;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* ////////////////////////////////////////////////// */
+ 
+
+
+/* //////////////////////////////////////////////////////////////// */
 #individual{
 display: grid;
 grid-template-rows: 1fr 1fr;
@@ -18,3 +38,5 @@ width: 80%;
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
 }
+
+

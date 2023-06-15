@@ -10,7 +10,7 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createdBy: { type: Schema.Types.ObjectId, ref: "user" },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   },
   { timestamps: true }
 );

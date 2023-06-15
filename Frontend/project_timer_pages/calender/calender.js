@@ -3,9 +3,13 @@ const day_view = document.getElementById("day_view");
 const week_view = document.getElementById("week_view");
 const container = document.getElementById("container");
 
+//////////////////Calender///////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////
+
 list.addEventListener("click", (e) => {
   e.preventDefault();
-  fetch("https://648990d55fa58521caafd6b0.mockapi.io/time") //mongodb query containing sorted data by startTime
+  fetch("http://localhost:3000/calender") //mongodb query containing sorted data by startTime
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -27,11 +31,11 @@ list.addEventListener("click", (e) => {
         const task = document.createElement("div");
         task.setAttribute("id", "task");
         const task_name = document.createElement("div");
-        const projectID = document.createElement("div");
-        projectID.innerHTML = item.ProjectID; //take name of project by fetching data using mongodb queries from backend
-        const taskID = document.createElement("div");
-        taskID.innerHTML = item.taskID;
-        task_name.append(projectID, taskID);
+        const projectName = document.createElement("div");
+        projectName.innerHTML = item.projectName; //take name of project by fetching data using mongodb queries from backend
+        const taskName = document.createElement("div");
+        taskName.innerHTML = item.taskName;
+        task_name.append(projectName, taskName);
         const time = document.createElement("div");
         const start_end = document.createElement("div");
         start_end.setAttribute("id", "start_end");
@@ -70,32 +74,44 @@ day_view.addEventListener("click", (e) => {
     .then((data) => {
       console.log(data);
       container.innerHTML = "";
+
       const hours = [
         "12:00 AM",
-        "01:00 AM",
-        "02:00 AM",
-        "03:00 AM",
-        "04:00 AM",
-        "05:00 AM",
-        "06:00 AM",
-        "07:00 AM",
-        "08:00 AM",
-        "09:00 AM",
+        "1:00 AM",
+        "2:00 AM",
+        "3:00 AM",
+        "4:00 AM",
+        "5:00 AM",
+        "6:00 AM",
+        "7:00 AM",
+        "8:00 AM",
+        "9:00 AM",
         "10:00 AM",
         "11:00 AM",
         "12:00 PM",
-        "01:00 PM",
-        "02:00 PM",
-        "03:00 PM",
-        "04:00 PM",
-        "05:00 PM",
-        "06:00 PM",
-        "07:00 PM",
-        "08:00 PM",
-        "08:00 PM",
-        "09:00 PM",
+        "1:00 PM",
+        "2:00 PM",
+        "3:00 PM",
+        "4:00 PM",
+        "5:00 PM",
+        "6:00 PM",
+        "7:00 PM",
+        "8:00 PM",
+        "9:00 PM",
         "10:00 PM",
         "11:00 PM",
       ];
+
+      data.forEach((item) => {
+        hours.forEach((hour) => {
+          const start_time = Intl.DateTimeFormat("en", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          }).format(new Date(item.startTime));
+          console.log(start_time);
+          console.log(hour);
+        });
+      });
     });
 });
