@@ -1,4 +1,6 @@
 
+
+
 require("dotenv").config();
 const express = require("express")
 const cors = require("cors");
@@ -9,11 +11,15 @@ const session = require("express-session")
 
 const {connection} = require("./db");
 const {isLoggedIn} = require("./middlewares/isLogged")
+
 const { userRoute } = require("./routes/user.routes");
+const { projectRoute } = require("./routes/project.route");
 const app = express();
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(cors());
+
+
 
 app.get("/",(req,res)=>{
     res.send("B26_Time-Trace_Project")
@@ -73,5 +79,6 @@ app.listen(process.env.PORT || 3000 , async()=>{
         console.log("Cannot connect to DataBase")
     }
 })
+
 
 
