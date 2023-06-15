@@ -17,8 +17,8 @@ const timerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  taskId: { type: Schema.Types.ObjectId, ref: "task" },
-  userId: { type: Schema.Types.ObjectId, ref: "user" },
+  taskId: { type: mongoose.Schema.Types.ObjectId, ref: "task" },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 
 timerSchema.methods.start = function () {

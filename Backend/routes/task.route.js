@@ -1,16 +1,20 @@
 const express = require("express");
-const { TasktModel } = require("../models/project.model");
+
+const { TasktModel } = require("../models/task.model");
+
 
 const taskRoute = express.Router();
 
 // Create a new project
 taskRoute.post("/create", async (req, res) => {
   try {
+
     const { name, description } = req.body;
     const task = new TasktModel({
       name,
       description,
     });
+
 
     await task.save();
     res.status(200).json({ task });
@@ -19,6 +23,7 @@ taskRoute.post("/create", async (req, res) => {
     res.status(500).json({ error: "Failed to create task" });
   }
 });
+
 
 // Get all tasks
 taskRoute.get("/", async (req, res) => {
@@ -75,5 +80,6 @@ taskRoute.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete task" });
   }
 });
+
 
 module.exports = { taskRoute };

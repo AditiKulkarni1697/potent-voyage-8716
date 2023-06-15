@@ -1,6 +1,14 @@
 
 
 
+
+
+
+
+
+
+
+
 require("dotenv").config();
 const express = require("express")
 const cors = require("cors");
@@ -14,16 +22,29 @@ const {isLoggedIn} = require("./middlewares/isLogged")
 
 const { userRoute } = require("./routes/user.routes");
 const { projectRoute } = require("./routes/project.route");
+const { calenderRouter } = require("./routes/calender.route");
+const { timerRoute } = require("./routes/timer.route");
+
+const { taskRoute } = require("./routes/task.route");
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
 
+app.get("/", (req, res) => {
+  res.send("B26_Time-Trace_Project");
+});
 
-app.get("/",(req,res)=>{
-    res.send("B26_Time-Trace_Project")
-})
+app.use("/user", userRoute);
+app.use("/timer", timerRoute);
+app.use("/calender", calenderRouter);
+app.use("/project", projectRoute);
+app.use("/task", taskRoute);
+
+
+
 
 // app.get('/auth/google',
 //   passport.authenticate('google', { scope: ['profile','email'] }));
@@ -37,7 +58,7 @@ app.get("/",(req,res)=>{
 //   });
 
 
-app.use("/user", userRoute)
+
 
 
 // Oauth google passport oauth2
@@ -79,6 +100,7 @@ app.listen(process.env.PORT || 3000 , async()=>{
         console.log("Cannot connect to DataBase")
     }
 })
+
 
 
 
