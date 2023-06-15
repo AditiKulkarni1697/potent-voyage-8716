@@ -7,7 +7,11 @@ const projectRoute = express.Router();
 projectRoute.post("/create", async (req, res) => {
   try {
     const { name, description } = req.body;
-    const project = new ProjectModel({ name, description });
+    const project = new ProjectModel({
+      name,
+      description,
+    });
+
     await project.save();
     res.status(200).json({ project });
   } catch (error) {
@@ -71,7 +75,5 @@ projectRoute.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete project" });
   }
 });
-
-
 
 module.exports = { projectRoute };
