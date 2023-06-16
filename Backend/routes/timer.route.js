@@ -14,4 +14,59 @@ timerRoute.post("/", async (req, res) => {
   }
 });
 
+timerRoute.get("/data/:start/:end",async(req,res)=>{
+
+   let {start,end}=req.params
+
+   
+   const startDate = new Date(start);
+   startDate.setUTCHours(0, 0, 0, 0);
+   
+   const endDate = new Date(end);
+   endDate.setUTCHours(23, 59, 59, 999);
+console.log(startDate,endDate)
+
+let data = await TimerModel.aggregate([
+  {
+    $match: {
+      startTime: {
+        $gte: startDate,
+        $lte: endDate,
+      }
+    }
+  },
+  {
+    $lookup: {
+      from: "tasks", // Replace "tasks" with the actual name of the TaskModel collection
+      localField: "taskId",
+      foreignField: "_id",
+      as: "task"
+    }
+  },
+  {
+    $group: {
+      _id: { $dateToString: { format: "%Y-%m-%d", date: "$startTime" } },
+      totalDuration: { $sum: "$duration" },
+      count: { $sum: 1 },
+      tasks: { $first: "$task" } // Include the "task" field from the first document in each group
+    }
+  },
+  {
+    $sort: {
+      _id: 1
+    }
+  }
+]);
+
+
+  res.send(data)
+
+})
+
+timerRoute.get("/data",async(req,res)=>{
+
+  let data=await TimerModel.find()
+  res.send(data)
+})
+
 module.exports = { timerRoute };

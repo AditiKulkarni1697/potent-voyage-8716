@@ -9,7 +9,7 @@ const userRoute = express.Router();
 userRoute.post("/register", async(req,res)=>{
   
     try {
-        const {firstName, lastName , email, password} = req.body;
+        const {name , email, password} = req.body;
 
         // Check if user already present or not 
         const isUserPresent = await UserModel.findOne({email});
@@ -23,7 +23,7 @@ userRoute.post("/register", async(req,res)=>{
         const hashPass = await bcrypt.hash(password,4);
 
         // Store user data in Database
-        const newUser =  UserModel({name:`${firstName} ${lastName}`,email,password:hashPass});
+        const newUser =  UserModel({name,email,password:hashPass});
         await newUser.save();
 
         res.status(200).send({message:"Registration Successfull", User: newUser})

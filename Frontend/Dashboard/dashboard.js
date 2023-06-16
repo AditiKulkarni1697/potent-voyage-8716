@@ -4,9 +4,34 @@ var yValues = [55, 49, 44, 24, 45,];
 var barColors = ` #8B55DD`;
 
 
+var today = new Date();
+
+// Calculate the end date (today + 6 days)
+var endDate = new Date(today);
+endDate.setDate(endDate.getDate() + 6);
+
+// Format the dates in "MM/DD/YYYY" format
+var startDateString = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
+var endDateString = (endDate.getMonth() + 1) + "/" + endDate.getDate() + "/" + endDate.getFullYear();
+
+// Generate the date range string
+var dateRangeString = startDateString + " - " + endDateString;
+
+// Update the HTML element with the date range
+
+
+
+console.log(dateRangeString)
+
+
+
+
+
 let range=document.getElementById("range")
 console.log(range)
+range.value=dateRangeString
 let data=range.value.split("/")
+console.log(data)
 
 let startdate=Number(data[1])
 let enddate=Number(data[3])
@@ -37,7 +62,22 @@ for(let i=startmonth;i<=endmonth;i++)
 
 
 bargraph(arr)
+
+
+const querystartDate = `${data[2].split("-")[0]}-${data[0]}-${data[1]}`;
+const queryendDate = `${data[4]}-${data[2].split("-")[1]}-${data[3]}`;
     
+
+fetch(`http://localhost:9090/timer/data/${querystartDate}/${queryendDate}`)
+.then((res)=>{
+  return res.json()
+})
+.then((data)=>{
+
+     appenddata(data)
+  console.log(data)
+})
+
    
 
 function bargraph(arr)
@@ -67,7 +107,7 @@ chartCanvas.myChart = new Chart(chartCanvas, {
         backgroundColor: barColors,
         data: yValues,
         barPercentage: 0.4,
-        categoryPercentage: 0.95,
+        categoryPercentage: 0.85,
       },
     ],
   },
@@ -75,26 +115,31 @@ chartCanvas.myChart = new Chart(chartCanvas, {
     scales: {
       yAxes: [
         {
-          position: "right", // Move the y-axis labels to the right
+          position: "right",
           ticks: {
+            fontColor: "rgb(44, 19, 56)",
             fontSize: 20,
+            padding: 20,
             beginAtZero: true,
             callback: function (value, index, values) {
-              return value + " " +"h";
+              return value.toString() + "h";
             },
+            fontWeight: "bold", // Increase font weight
           },
         },
       ],
       xAxes: [
         {
           gridLines: {
-            display: false, // Remove the x-axis grid lines
+            display: false,
           },
           ticks: {
+            fontColor: "rgb(44, 19, 56)",
+            padding: 30,
             fontSize: 20,
             beginAtZero: true,
+            fontWeight: "bold", // Increase font weight
           },
-          
         },
       ],
     },
@@ -107,7 +152,6 @@ chartCanvas.myChart = new Chart(chartCanvas, {
     legend: { display: false },
     title: {
       display: true,
-
     },
   },
 });
@@ -147,7 +191,7 @@ new Chart("myChart2", {
   options: {
     title: {
       display: true,
-      text: "World Wide Wine Production"
+      text: ""
     }
   }
 });
@@ -190,8 +234,25 @@ $(function() {
       
       
       bargraph(arr)
+
+      let startdate1= start.format('YYYY-MM-DD')
+    let enddate1=end.format('YYYY-MM-DD')
+
+    fetch(`http://localhost:9090/timer/data/${startdate1}/${enddate1}`)
+  .then((res)=>{
+    return res.json()
+  })
+  .then((data)=>{
+
+       appenddata(data)
+    console.log(data)
+  })
       
     });
+
+    
+
+    
   });
 
 
@@ -201,44 +262,54 @@ $(function() {
 
   /**table  */
 
-  fetch("http://localhost:4500/user")
-  .then((res)=>{
-    return res.json()
-  })
-  .then((data)=>{
-
-    appenddata(data)
-    console.log(data)
-  })
+ 
 
   let table=document.getElementById("table")
 
   function appenddata(data)
   {
-    let tr=document.createElement("tr")
-    let td1=document.createElement("td")
-    let td2=document.createElement("td")
-    let td3=document.createElement("td")
-    let td4=document.createElement("td")
-    td1.innerText="Title"
-    td2.innerText="Duration"
-    td3.innerText="Amount"
-    td4.innerText="Percentage"
+    let headingdiv=document.createElement("div")
+    headingdiv.classList.add("heading")
+    let p=document.createElement("p")
+    let p1=document.createElement("p")
+    let p2=document.createElement("p")
+    let p3=document.createElement("p")
 
-    tr.append(td1,td2,td3,td4)
-    table.append(tr)
+    p.innerText="Title"
+    p1.innerText="Duration"
+    p2.innerText="Amount"
+    p3.innerText="Percentage"
+
+    headingdiv.append(p,p1,p2,p3)
+    table.append(headingdiv)
 
     data.forEach((data)=>{
-      let tr1=document.createElement("tr")
-    let td5=document.createElement("td")
-    let td6=document.createElement("td")
-       
-    console.log(data.title)
-    td5.innerText=data.title
-    td6.innerText=data.duration
 
-    tr1.append(td5,td6)
-    table.append(tr1)
+      let contentdiv=document.createElement("div")
+      contentdiv.classList.add("table-content")
+      let p1=document.createElement("p")
+    let p2=document.createElement("p")
+    let p3=document.createElement("p")
+    let p4=document.createElement("p")
+  
+       
+    
+    p1.innerText=data.task
+    p2.innerText=data.totalDuration
+    p3.innerText="0"
+    p4.innerText="0"
+
+    contentdiv.append(p1,p2,p3,p4)
+    table.append(contentdiv)
    
     })
   }
+  
+
+  
+
+
+
+
+  // Get the duration value in seconds
+
