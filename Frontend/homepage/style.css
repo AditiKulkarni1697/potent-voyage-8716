@@ -4,7 +4,7 @@
 .nav{
     display: flex;
     position: fixed;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: rgb(227, 227, 227);
     width: 99%;
     justify-content: space-around;
@@ -61,14 +61,14 @@
     display: flex;
     /* margin-top: 40px; */
     /* background-color:rgb(227, 227, 227) ; */
-    margin-left: 550px;
+    margin-left: 575px;
 }
 .review img{
     height: 30px;
     margin-top: 200px;
-    margin-left: -5px;
+    margin-left: 0px;
     background-color:rgb(227, 227, 227) ;
-    width: 43px;
+    width: 40px;
 }
 .review h3{
     margin-top: 205px;
@@ -100,3 +100,59 @@
 
 
 
+.email{
+    margin-top: 60px;
+}
+.email input{
+    margin-left: 520px;
+    width: 300px;
+    height: 50px;
+    font-size: larger;
+    padding-left: 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+.email button{
+    width: 150px;
+    height: 55px;
+    font-size: larger;
+    border-radius: 20px;
+}
+
+
+
+.free{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(105, 105, 105);
+    margin-top: 30px;
+}
+
+
+
+.img1{
+    margin-left: 90px;
+}
+
+
+.hr{
+    color: black;
+}
+
+
+
+.c1{
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 100px;
+}
+.c2{
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    margin-left: 350px;
+    margin-right: 400px;
+    color: rgb(44, 44, 44);
+}
