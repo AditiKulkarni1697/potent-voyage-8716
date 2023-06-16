@@ -55,10 +55,10 @@ userRoute.post("/login",async(req,res)=>{
             return res.status(400).send({message:"Invalid Credential"})
         }
 
-        const accessToken = jwt.sign({userId:isUserPresent._id},process.env.accessSecretKey)
+        const accessToken = jwt.sign({userId:isUserPresent._id,email: isUserPresent.email},process.env.accessSecretKey)
         res.cookie("accessToken",accessToken)
 
-        const refreshToken = jwt.sign({userId:isUserPresent._id},process.env.refreshSecretKey)
+        const refreshToken = jwt.sign({userId:isUserPresent._id,email: isUserPresent.email},process.env.refreshSecretKey)
         res.cookie("refreshToken",refreshToken)
 
         res.status(200).send({message:"login successfull",accessToken : accessToken, refreshToken: refreshToken})

@@ -1,30 +1,24 @@
-
-
-
-
-
-
-
-
-
-
-
+// NPM Install
 require("dotenv").config();
+const path = require("path")
 const express = require("express")
 const cors = require("cors");
 const passport = require("passport")
- require("./google-oauth")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+
+// Project files import
+require("./google-oauth")
 const {connection} = require("./db");
 const {isLoggedIn} = require("./middlewares/isLogged")
+const {authenticate} = require("./middlewares/authentication.middleware")
 
 const { userRoute } = require("./routes/user.routes");
 const { projectRoute } = require("./routes/project.route");
 const { calenderRouter } = require("./routes/calender.route");
 const { timerRoute } = require("./routes/timer.route");
-
 const { taskRoute } = require("./routes/task.route");
 
 const app = express();
@@ -36,14 +30,12 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("B26_Time-Trace_Project");
 });
-
+// app.use(authenticate)
 app.use("/user", userRoute);
 app.use("/timer", timerRoute);
 app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
 app.use("/task", taskRoute);
-
-
 
 
 // app.get('/auth/google',
@@ -58,9 +50,6 @@ app.use("/task", taskRoute);
 //   });
 
 
-
-
-
 // Oauth google passport oauth2
 
 app.use(session({
@@ -70,6 +59,7 @@ app.use(session({
     cookie: { secure: false }
   }))
   app.use(passport.initialize())
+  app.use(passport.session())
 
 app.get('/auth/google',
   passport.authenticate('google', { scope:
@@ -78,18 +68,56 @@ app.get('/auth/google',
 
 app.get( '/auth/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: '/auth/google/success',
+        successRedirect: '/protected',
         failureRedirect: '/auth/google/failure'
 }));
+
+// app.get("/auth/google/success",(req,res)=>{
+//     res.redirect("http://localhost:9090/Frontend/homepage/index.html")
+// })
 
 app.get("/auth/google/failure",(req,res)=>{
     res.send("Failed !")
 })
 
-app.get("/auth/protected",isLoggedIn,(req,res)=>{
-    res.send("Hello there!")
+app.get('/protected',  (req, res) => {
+    res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+  });
+
+
+
+//   Github Authentication
+
+app.get("/auth/github",async(req,res)=>{
+
+    const {code} = req.query
+
+    const accessToken = await fetch("https://github.com/login/oauth/access_token",{
+        method: "POST",
+        headers :{
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            client_id : process.env.GITHUB_CLILENT_ID,
+            client_secret : process.env.GITHUB_CLILENT_SECRET,
+            code 
+        })
+    }).then((res)=> {
+        res.json()
+        // res.cookie("accessToken",res.access_token)
+    })
+
+    console.log(accessToken)
+
+    res.send("Sign in with github successful")
 })
 
+app.get('/login',  (req, res) => {
+    res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
+  });
+
+// Connection to the server
 app.listen(process.env.PORT || 3000 , async()=>{
     console.log(`server is running on port ${process.env.PORT}`)
     try {
