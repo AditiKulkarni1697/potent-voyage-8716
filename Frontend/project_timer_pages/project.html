@@ -130,6 +130,12 @@
                   class="form-control"
                   id="task_project"
                 />
+                <input
+                  type="text"
+                  disabled
+                  class="visually-hidden"
+                  id="task_project_id"
+                />
               </div>
               <div class="modal-footer">
                 <button
@@ -155,33 +161,11 @@
   </body>
   <script>
     // JavaScript Code
-
     const modalCreateProjectForm = document.getElementById(
       "modalCreateProjectForm"
     );
 
-    const createTask = () => {
-      const data = {
-        name: document.getElementById("task_name").value,
-        description: document.getElementById("task_description").value,
-        projectId: "",
-      };
-
-      console.log(data);
-
-      //   fetch("http://localhost:3300/task/create", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(data),
-      //   })
-      //     .then((res) => res.json())
-      //     .then((res) => {
-      //       // TODO: NAVIGATE TO TASK DETAIL PAGE
-      //     })
-      //     .catch((err) => console.log(err));
-    };
+    // create Project
 
     const createProject = () => {
       const data = {
@@ -211,6 +195,41 @@
                 displayProjectDetails(res.projects);
               });
           }
+        })
+        .catch((err) => console.log(err));
+    };
+
+    //creates task
+
+    // const createTask = () => {
+    //   const data = {
+    //     name: document.getElementById("task_name").value,
+    //     description: document.getElementById("task_description").value,
+    //     projectId: "",
+    //   };
+
+    //   console.log(data);
+    // };
+
+    const createTask = () => {
+      const data = {
+        name: document.getElementById("task_name").value,
+        description: document.getElementById("task_description").value,
+        projectId: document.getElementById("task_project_id").value,
+      };
+      console.log(data);
+
+      fetch("http://localhost:3300/task/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.task._id);
+          window.location.href = `./task.html?taskId=${res.task._id}`;
         })
         .catch((err) => console.log(err));
     };
@@ -256,6 +275,11 @@
         createTaskButton.setAttribute("class", "btn btn-secondary");
         createTaskButton.dataset.bsToggle = "modal";
         createTaskButton.dataset.bsTarget = "#create-task-modal";
+        createTaskButton.dataset.id = project._id;
+        createTaskButton.addEventListener("click", () => {
+          document.querySelector("#task_project").value = project.name;
+          document.querySelector("#task_project_id").value = project._id;
+        });
         createTaskButton.textContent = "+";
 
         createTaskCell.appendChild(createTaskButton);
