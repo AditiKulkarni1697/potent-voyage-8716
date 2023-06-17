@@ -39,3 +39,6 @@ timerSchema.methods.stop = function () {
 const TimerModel = mongoose.model("timer", timerSchema);
 
 module.exports = { TimerModel };
+
+
+

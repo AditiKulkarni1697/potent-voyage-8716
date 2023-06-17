@@ -34,9 +34,11 @@ app.get("/", (req, res) => {
 });
 // app.use(authenticate)
 app.use("/user", userRoute);
+
 app.use("/timer", timerRoute);
 app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
+app.use(authenticate)
 app.use("/task", taskRoute);
 
 
@@ -120,17 +122,9 @@ app.get('/login',  (req, res) => {
     res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
   });
 
-// Connection to the server
-app.listen(process.env.PORT || 3000 , async()=>{
-    console.log(`server is running on port ${process.env.PORT}`)
-    try {
-        await connection
-        console.log("Connect to DataBase")
-    } catch (error) {
-        console.log(error.message)
-        console.log("Cannot connect to DataBase")
-    }
-})
+  
+
+
 
 
 
@@ -148,3 +142,6 @@ app.listen(process.env.PORT || 3000, async () => {
     console.log("Cannot connect to DataBase");
   }
 });
+
+
+
