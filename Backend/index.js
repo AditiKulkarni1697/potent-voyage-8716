@@ -36,9 +36,11 @@ app.get("/", (req, res) => {
 });
 // app.use(authenticate)
 app.use("/user", userRoute);
+
 app.use("/timer", timerRoute);
 app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
+app.use(authenticate)
 app.use("/task", taskRoute);
 
 // app.get('/auth/google',
@@ -169,6 +171,10 @@ app.get('/login',  (req, res) => {
     res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
   });
 
+  
+
+
+
 
 
 app.get("/auth/protected", isLoggedIn, (req, res) => {
@@ -186,3 +192,6 @@ app.listen(process.env.PORT || 3000, async () => {
     console.log("Cannot connect to DataBase");
   }
 });
+
+
+

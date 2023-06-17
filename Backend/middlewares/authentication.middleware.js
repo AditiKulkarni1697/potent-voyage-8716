@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt");
 
 const authenticate = async(req,res,next)=>{
     try {
-        const {accesToken} = req?.cookies
+        const token = req?.cookies.accessToken
+   
 
-        const isTokenValid = jwt.verify(accesToken, process.env.accessSecretKey)
+        const isTokenValid = jwt.verify(token, process.env.accessSecretKey)
 
         if(!isTokenValid){
             return res.status(400).send({message: "Unnauthorized access token"})
@@ -22,3 +23,5 @@ const authenticate = async(req,res,next)=>{
 module.exports = {
     authenticate
 }
+
+

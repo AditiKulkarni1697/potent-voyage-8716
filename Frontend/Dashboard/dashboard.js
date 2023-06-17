@@ -3,6 +3,7 @@ var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 var yValues = [55, 49, 44, 24, 45];
 var barColors = ` #8B55DD`;
 
+
 var today = new Date();
 
 // Calculate the end date (today + 6 days)
@@ -33,11 +34,7 @@ range.value = dateRangeString;
 let data = range.value.split("/");
 console.log(data);
 
-let startdate = Number(data[1]);
-let enddate = Number(data[3]);
-let startmonth = Number(data[0]);
-let endmonth = data[2].split("-")[1];
-console.log(endmonth);
+console.log(dateRangeString)
 
 let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30];
 
@@ -51,13 +48,32 @@ for (let i = startmonth; i <= endmonth; i++) {
   }
   startdate = 1;
 }
+ 
+data1.width=arr
+bargraph(data1)
+
+const dateRange = range.value
+
+// Split the date range into start and end dates
+const [startDateStr, endDateStr] = dateRange.split(" - ");
+
+// Parse the start and end dates using the Date constructor
+const startDate1 = new Date(startDateStr);
+const endDate1 = new Date(endDateStr);
+
+// Format the dates as YYYY-MM-DD strings
+const querystartDate = startDate1.toISOString().split("T")[0];
+const queryendDate = endDate1.toISOString().split("T")[0];
+
+console.log(querystartDate); // Output: 2023-06-16
+console.log(queryendDate);
 
 bargraph(arr);
 
-const querystartDate = `${data[2].split("-")[0]}-${data[0]}-${data[1]}`;
-const queryendDate = `${data[4]}-${data[2].split("-")[1]}-${data[3]}`;
+const querystartDat1e = `${data[2].split("-")[0]}-${data[0]}-${data[1]}`;
+const queryendDate1 = `${data[4]}-${data[2].split("-")[1]}-${data[3]}`;
 
-fetch(`http://localhost:5501/timer/data/${querystartDate}/${queryendDate}`)
+fetch(`http://localhost:5501/timer/data/${querystartDate1}/${queryendDate1}`)
   .then((res) => {
     return res.json();
   })
@@ -210,11 +226,9 @@ $(function () {
         }
         startdate = 1;
       }
-
-      bargraph(arr);
-
-      let startdate1 = start.format("YYYY-MM-DD");
-      let enddate1 = end.format("YYYY-MM-DD");
+      
+      
+      bargraph(arr)
 
       fetch(`http://localhost:5501/timer/data/${startdate1}/${enddate1}`)
         .then((res) => {
