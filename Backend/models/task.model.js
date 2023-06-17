@@ -11,6 +11,7 @@ const taskSchema = new mongoose.Schema(
       required: true,
     },
     projectId: { type: mongoose.Schema.Types.ObjectId, ref: "project" },
+    timerId: { type: mongoose.Schema.Types.ObjectId, ref: "timer" },
   },
   { timestamps: true }
 );

@@ -1,23 +1,23 @@
-
 // NPM Install
 require("dotenv").config();
+
+
 const path = require("path")
 const bcrypt = require("bcrypt")
 const express = require("express")
-const cors = require("cors");
-const passport = require("passport")
-const cookieParser = require("cookie-parser")
-const session = require("express-session")
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+const cors = require("cors");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 // Project files import
-require("./google-oauth")
-const {connection} = require("./db");
-const {isLoggedIn} = require("./middlewares/isLogged")
-const {authenticate} = require("./middlewares/authentication.middleware")
-
-
+require("./google-oauth");
+const { connection } = require("./db");
+const { isLoggedIn } = require("./middlewares/isLogged");
+const { authenticate } = require("./middlewares/authentication.middleware");
 
 const { userRoute } = require("./routes/user.routes");
 const { projectRoute } = require("./routes/project.route");
@@ -41,12 +41,10 @@ app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
 app.use("/task", taskRoute);
 
-
-
 // app.get('/auth/google',
 //   passport.authenticate('google', { scope: ['profile','email'] }));
 
-// app.get('/auth/google/callback', 
+// app.get('/auth/google/callback',
 //   passport.authenticate('google', {successRedirect: '/', failureRedirect: '/login', session : false}),
 //   function(req, res) {
 //     // Successful authentication, redirect home.
@@ -54,36 +52,40 @@ app.use("/task", taskRoute);
 //     res.redirect('/');
 //   });
 
-
 // Oauth google passport oauth2
 
-app.use(session({
-    secret: 'keyboard cat',
+app.use(
+  session({
+    secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
-  }))
-  app.use(passport.initialize())
-  app.use(passport.session())
+    cookie: { secure: false },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
-));
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
 
-app.get( '/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/protected',
-        failureRedirect: '/auth/google/failure'
-}));
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/protected",
+    failureRedirect: "/auth/google/failure",
+  })
+);
 
-// app.get("/auth/google/success",(req,res)=>{
-//     res.redirect("http://localhost:9090/Frontend/homepage/index.html")
-// })
-
-app.get("/auth/google/failure",(req,res)=>{
-    res.send("Failed !")
+app.get("/auth/google/success",(req,res)=>{
+    res.redirect("http://localhost:5501/Frontend/homepage/index.html")
 })
+
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed !");
+});
 
 app.get('/protected', async (req, res) => {
       console.log(req.user)
@@ -111,7 +113,12 @@ app.get('/protected', async (req, res) => {
 
 
 
+app.get("/protected", (req, res) => {
+  res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+});
+
 //   Github Authentication
+
 
 app.get("/auth/github",async(req,res)=>{
 
@@ -163,10 +170,12 @@ app.get('/login',  (req, res) => {
   });
 
 
+
 app.get("/auth/protected", isLoggedIn, (req, res) => {
   res.send("Hello there!");
 });
 
+// Connection to the server
 app.listen(process.env.PORT || 3000, async () => {
   console.log(`server is running on port ${process.env.PORT}`);
   try {

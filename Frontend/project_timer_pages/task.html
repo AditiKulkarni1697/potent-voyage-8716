@@ -3,7 +3,174 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./project.css" />
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
     <title>Task</title>
   </head>
-  <body></body>
+  <body>
+    <nav>
+      <div>
+        <h1>Task</h1>
+      </div>
+    </nav>
+
+    <main class="d-flex">
+      <section class="flex-grow-1 table-section card rounded-4 m-3">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Created By</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="taskList">
+            <!-- Populated dynamically with JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+  <script>
+    const url = new URLSearchParams(window.location.search);
+    const taskId = url.get("taskId");
+    console.log(taskId);
+
+    let t1Interval;
+
+    const loadTask = () => {
+      fetch(`http://localhost:3300/task/${taskId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          displayTaskDetails(res, res.timerId);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    window.onload = loadTask;
+
+    const startTimer = async (timerId) => {
+      const res = await fetch(`http://localhost:3300/timer/start`, {
+        method: "POST",
+        body: JSON.stringify({
+          timerId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const timer = await res.json();
+      loadTask();
+    };
+
+    const stopTimer = async (timerId) => {
+      const res = await fetch(`http://localhost:3300/timer/stop`, {
+        method: "POST",
+        body: JSON.stringify({
+          timerId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const timer = await res.json();
+
+      clearInterval(t1Interval);
+      console.log("stopped", timer);
+      loadTask();
+    };
+
+    function displayTaskDetails(task, timer) {
+      const tableBody = document.getElementById("taskList");
+      tableBody.innerHTML = "";
+
+      const row = document.createElement("tr");
+
+      const nameCell = document.createElement("td");
+      nameCell.textContent = task.name;
+
+      const descriptionCell = document.createElement("td");
+      descriptionCell.textContent = task.description;
+
+      const createdByCell = document.createElement("td");
+      createdByCell.textContent = "ankita";
+
+      const createdAtCell = document.createElement("td");
+      createdAtCell.textContent = moment(task.createdAt).fromNow();
+
+      const actionCell = document.createElement("td");
+      actionCell.setAttribute("class", "d-flex");
+      const startBtn = document.createElement("button");
+      startBtn.setAttribute("class", "btn btn-primary");
+      startBtn.innerText = "Start";
+      startBtn.addEventListener("click", () => startTimer(timer._id));
+
+      const stopBtn = document.createElement("button");
+      stopBtn.innerText = "Stop";
+      stopBtn.setAttribute("class", "btn btn-danger");
+      stopBtn.addEventListener("click", () => stopTimer(timer._id));
+
+      const durationEl = document.createElement("p");
+      durationEl.setAttribute("class", "ms-3");
+      if (timer.isActive && !timer.duration) {
+        durationEl.innerText = "";
+        const duration = moment.duration(
+          moment().diff(moment(timer.startTime))
+        );
+
+        durationEl.innerText = `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`;
+
+        t1Interval = setInterval(() => {
+          durationEl.innerText = "";
+          const duration = moment.duration(
+            moment().diff(moment(timer.startTime))
+          );
+
+          durationEl.innerText = `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`;
+        }, 1000);
+
+        actionCell.append(stopBtn);
+        actionCell.append(durationEl);
+      } else if (!timer.isActive && !timer.duration) {
+        actionCell.append(startBtn);
+      } else {
+        const duration = moment.duration(
+          moment(timer.endTime).diff(moment(timer.startTime))
+        );
+
+        durationEl.innerText = `Duration: ${duration.hours()}:${duration.minutes()}:${duration.seconds()}`;
+
+        actionCell.append(durationEl);
+      }
+
+      row.appendChild(nameCell);
+      row.appendChild(descriptionCell);
+      row.appendChild(createdByCell);
+      row.appendChild(createdAtCell);
+      row.appendChild(actionCell);
+
+      tableBody.appendChild(row);
+    }
+  </script>
 </html>
