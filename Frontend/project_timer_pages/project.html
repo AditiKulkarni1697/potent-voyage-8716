@@ -228,8 +228,8 @@
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.task._id);
-          window.location.href = `./task.html?taskId=${res.task._id}`;
+          console.log(res);
+          window.location.href = `./task.html?taskId=${res.savedTask._id}`;
         })
         .catch((err) => console.log(err));
     };

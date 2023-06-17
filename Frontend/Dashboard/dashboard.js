@@ -1,211 +1,7 @@
 var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 
-var yValues = [55, 49, 44, 24, 45,];
+var yValues = [55, 49, 44, 24, 45];
 var barColors = ` #8B55DD`;
-
-function convertMsToHMS(timeMs) {
-  const totalSeconds = Math.floor(timeMs / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  // Format the values as strings with leading zeros if necessary
-  const hoursStr = String(hours).padStart(2, '0');
-  const minutesStr = String(minutes).padStart(2, '0');
-  const secondsStr = String(seconds).padStart(2, '0');
-
-  // Return the formatted time string
-  return `${hoursStr}:${minutesStr}:${secondsStr}`;
-}
-
-function convertMsToSeconds(timeMs) {
-  const totalSeconds = Math.floor(timeMs / 1000);
-
-  return totalSeconds;
-}
-
-function convertSecondsToPercentage(seconds) {
-  const totalSecondsIn24Hours = 24 * 60 * 60;
-  const percentage = (seconds / totalSecondsIn24Hours) * 100;
-
-  return percentage.toFixed(2); // Round to 2 decimal places
-}
-
-
-function calculateAverageDurationPercentage(totalDurationMs, occurrences) {
-  const averageDurationMs = totalDurationMs / occurrences;
-  const averageDurationMinutes = averageDurationMs / 60000; // Convert to minutes
-  const minutesInWholeDay = 24 * 60; // Total minutes in a day
-  const percentage = (averageDurationMinutes / minutesInWholeDay) * 100;
-
-  return percentage.toFixed(2); // Round to 2 decimal places
-}
-
-function convertMsToHours(durationMs) {
-  if (durationMs < 60000) {
-    const minutes = durationMs / 60000;
-    return minutes.toFixed(2);
-  } else {
-    const hours = durationMs / 3600000;
-    return hours.toFixed(0);
-  }
-}
-function convertMsToHours(durationMs) {
-  let hours = durationMs / 3600000;
-  hours=hours.toFixed(2)
-  return hours;
-}
-
-var data1 = {
-  length: "",
-  width: "",
-};
-
-function bargraph()
-{
-
-       
-var chartCanvas = document.getElementById("myChart");
-
-Chart.defaults.global.defaultFontStyle  = `Space Grotesk, sans-serif`;
-
-console.log(data1.length,data1.width)
-// Check if a chart instance already exists
-if (chartCanvas.myChart !== undefined) {
-  chartCanvas.myChart.destroy();
-}
-
-// Create the new chart instance
- // Set the default font family
-Chart.defaults.global.defaultFontSize = 20; 
-
-Chart.defaults.color = 'rgb(44, 19, 56)';
-
-
-
-chartCanvas.myChart = new Chart(chartCanvas, {
-  type: "bar",
-  data: {
-    labels: data1.width,
-    datasets: [
-      {
-        backgroundColor: barColors,
-        data: data1.length,
-        barPercentage: 0.4,
-        categoryPercentage: 0.85,
-      },
-    ],
-  },
-  options: {
-    plugins: {
-      legend: {
-          labels: {
-              // This more specific font property overrides the global property
-              font: {
-      
-                weight:"normal"
-              }
-          }
-      }
-  },
-    layout: {
-      padding: {
-        left: 20,
-        right: 50,
-        top: 20,
-        bottom: 40, // Increase bottom padding to accommodate y-axis labels
-      },
-    },
-    scales: {
-      yAxes: [
-        {
-          position: "right",
-          ticks: {
-            fontColor: "rgb(44, 19, 56)",
-            fontSize: 20,
-            padding: 20,
-            beginAtZero: true,
-            callback: function (value, index, values) {
-              return value.toString() + "h";
-            },
-            fontWeight: "bold", // Increase font weight
-          },
-        },
-      ],
-      xAxes: [
-        {
-          gridLines: {
-            display: false,
-          },
-          ticks: {
-            fontColor: "rgb(44, 19, 56)",
-            padding: 20, // Increase padding for x-axis labels
-            fontSize: 20,
-            beginAtZero: true,
-            fontWeight: "bold", // Increase font weight
-          },
-        },
-      ],
-    },
-    plugins: {
-      datalabels: {
-        anchor: "end",
-        align: "end",
-      },
-    },
-    legend: { display: false },
-    title: {
-      display: true,
-    },
-  },
-});
-
-
-
-}
-
-
-new Chart("myChart1", {
-  type: "doughnut",
-  data: {
-    // labels: xValues,
-    datasets: [{
-      backgroundColor: [`#827089`,`#95899A`],
-      data: [100]
-      
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Projects"
-    }
-  }
-});
-
-function avg(content)
-{
-  let value=100-content
- value=value.toFixed(2)
-
-new Chart("myChart2", {
-  type: "doughnut",
-  data: {
-     labels: [`${content}percent`],
-    datasets: [{
-      backgroundColor: [`rgb(11, 131, 217)`,`rgb(158, 91, 217)`],
-      data: [content,value]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Average Duration"
-    }
-  }
-});
-
-}
 
 
 var today = new Date();
@@ -215,53 +11,42 @@ var endDate = new Date(today);
 endDate.setDate(endDate.getDate() + 6);
 
 // Format the dates in "MM/DD/YYYY" format
-var startDateString = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-var endDateString = (endDate.getMonth() + 1) + "/" + endDate.getDate() + "/" + endDate.getFullYear();
+var startDateString =
+  today.getMonth() + 1 + "/" + today.getDate() + "/" + today.getFullYear();
+var endDateString =
+  endDate.getMonth() +
+  1 +
+  "/" +
+  endDate.getDate() +
+  "/" +
+  endDate.getFullYear();
 
 // Generate the date range string
 var dateRangeString = startDateString + " - " + endDateString;
 
 // Update the HTML element with the date range
 
+console.log(dateRangeString);
 
+let range = document.getElementById("range");
+console.log(range);
+range.value = dateRangeString;
+let data = range.value.split("/");
+console.log(data);
 
+console.log(dateRangeString)
 
+let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30];
 
+let arr = [];
 
-
-
-
-let range=document.getElementById("range")
-console.log(range)
-range.value=dateRangeString
-let data=range.value.split("/")
-console.log(data)
-
-let startdate=Number(data[1])
-let enddate=Number(data[3])
-let startmonth=Number(data[0])
-let endmonth=data[2].split("-")[1]
-console.log(endmonth)
-
-let month=[31,28,31,30,31,30,31,31,30,31,30]
-
-
-let arr=[]
-
-
-
-
-for(let i=startmonth;i<=endmonth;i++)
-
-{
-    let date
-    (startmonth==endmonth)?date=enddate:date=month[i-1]
-    for(let j=startdate;j<=date;j++)
-    {
-         arr.push(j+"/"+i)
-    }
-    startdate=1
-   
+for (let i = startmonth; i <= endmonth; i++) {
+  let date;
+  startmonth == endmonth ? (date = enddate) : (date = month[i - 1]);
+  for (let j = startdate; j <= date; j++) {
+    arr.push(j + "/" + i);
+  }
+  startdate = 1;
 }
  
 data1.width=arr
@@ -283,192 +68,216 @@ const queryendDate = endDate1.toISOString().split("T")[0];
 console.log(querystartDate); // Output: 2023-06-16
 console.log(queryendDate);
 
+bargraph(arr);
 
+const querystartDat1e = `${data[2].split("-")[0]}-${data[0]}-${data[1]}`;
+const queryendDate1 = `${data[4]}-${data[2].split("-")[1]}-${data[3]}`;
 
+fetch(`http://localhost:5501/timer/data/${querystartDate1}/${queryendDate1}`)
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    appenddata(data);
+    console.log(data);
+  });
 
-    
+function bargraph(arr) {
+  var chartCanvas = document.getElementById("myChart");
 
-fetch(`http://localhost:9090/timer/data/${querystartDate}/${queryendDate}`)
-.then((res)=>{
-  return res.json()
-})
-.then((data)=>{
+  Chart.defaults.global.defaultFontStyle = "Space Grotesk, sans-serif";
 
-     appenddata(data)
-  console.log(data)
-})
+  // Check if a chart instance already exists
+  if (chartCanvas.myChart !== undefined) {
+    chartCanvas.myChart.destroy();
+  }
 
-   
+  // Create the new chart instance
+  Chart.defaults.global.defaultFontFamily = "Space Grotesk, sans-serif"; // Set the default font family
+  Chart.defaults.global.defaultFontSize = 20;
 
+  chartCanvas.myChart = new Chart(chartCanvas, {
+    type: "bar",
+    data: {
+      labels: arr,
+      datasets: [
+        {
+          backgroundColor: barColors,
+          data: yValues,
+          barPercentage: 0.4,
+          categoryPercentage: 0.85,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            position: "right",
+            ticks: {
+              fontColor: "rgb(44, 19, 56)",
+              fontSize: 20,
+              padding: 20,
+              beginAtZero: true,
+              callback: function (value, index, values) {
+                return value.toString() + "h";
+              },
+              fontWeight: "bold", // Increase font weight
+            },
+          },
+        ],
+        xAxes: [
+          {
+            gridLines: {
+              display: false,
+            },
+            ticks: {
+              fontColor: "rgb(44, 19, 56)",
+              padding: 30,
+              fontSize: 20,
+              beginAtZero: true,
+              fontWeight: "bold", // Increase font weight
+            },
+          },
+        ],
+      },
+      plugins: {
+        datalabels: {
+          anchor: "end",
+          align: "end",
+        },
+      },
+      legend: { display: false },
+      title: {
+        display: true,
+      },
+    },
+  });
+}
 
+new Chart("myChart1", {
+  type: "doughnut",
+  data: {
+    // labels: xValues,
+    datasets: [
+      {
+        backgroundColor: [`rgb(213, 208, 215)`, `#95899A`],
+        data: [70, 30],
+      },
+    ],
+  },
+  options: {
+    title: {
+      display: true,
+      text: "",
+    },
+  },
+});
 
-
-
+new Chart("myChart2", {
+  type: "doughnut",
+  data: {
+    // labels: xValues,
+    datasets: [
+      {
+        backgroundColor: [`rgb(11, 131, 217)`, `rgb(158, 91, 217)`],
+        data: [95, 12],
+      },
+    ],
+  },
+  options: {
+    title: {
+      display: true,
+      text: "",
+    },
+  },
+});
 
 /**date range */
 
+$(function () {
+  $('input[name="daterange"]').daterangepicker(
+    {
+      opens: "left",
+    },
+    function (start, end, label) {
+      console.log(
+        "A new date selection was made: " +
+          start.format("YYYY-MM-DD") +
+          " to " +
+          end.format("YYYY-MM-DD")
+      );
 
+      let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30];
+      let startmonth = Number(start.format("MM"));
+      let endmonth = Number(end.format("MM"));
 
+      let arr = [];
+      console.log(range.value);
 
-$(function() {
-    $('input[name="daterange"]').daterangepicker({
-      opens: 'left'
-    }, function(start, end, label) {
-      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      let startdate = Number(start.format("DD"));
+      let enddate = Number(end.format("DD"));
 
-      let month=[31,28,31,30,31,30,31,31,30,31,30]
-      let startmonth=Number(start.format('MM'))
-      let endmonth=Number(end.format('MM'))
-      
-      let arr=[]
-      console.log(range.value)
-      
-      let startdate=Number(start.format('DD'))
-      let enddate=Number(end.format('DD'))
-      
-      
-      for(let i=startmonth;i<=endmonth;i++)
-      
-      {
-          let date
-          (i==endmonth)?date=enddate:date=month[i-1]
-          for(let j=startdate;j<=date;j++)
-          {
-               arr.push(j+"/"+i)
-          }
-          startdate=1
-         
+      for (let i = startmonth; i <= endmonth; i++) {
+        let date;
+        i == endmonth ? (date = enddate) : (date = month[i - 1]);
+        for (let j = startdate; j <= date; j++) {
+          arr.push(j + "/" + i);
+        }
+        startdate = 1;
       }
-     data1.width=arr
-     bargraph(data1)
       
       
+      bargraph(arr)
 
-      let startdate1= start.format('YYYY-MM-DD')
-    let enddate1=end.format('YYYY-MM-DD')
+      fetch(`http://localhost:5501/timer/data/${startdate1}/${enddate1}`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          appenddata(data);
+          console.log(data);
+        });
+    }
+  );
+});
 
-    fetch(`http://localhost:9090/timer/data/${startdate1}/${enddate1}`,{
-      method:"GET",
-      headers:{
-          "content-type":"application/json",
-          "authorization":localStorage.getItem("token")
-      }
+/**table  */
 
-      },)
+let table = document.getElementById("table");
 
-    
-  .then((res)=>{
-    return res.json()
-  })
-  .then((data)=>{
+function appenddata(data) {
+  let headingdiv = document.createElement("div");
+  headingdiv.classList.add("heading");
+  let p = document.createElement("p");
+  let p1 = document.createElement("p");
+  let p2 = document.createElement("p");
+  let p3 = document.createElement("p");
 
-       appenddata(data)
-    console.log(data)
-  })
-      
-    });
+  p.innerText = "Title";
+  p1.innerText = "Duration";
+  p2.innerText = "Amount";
+  p3.innerText = "Percentage";
 
-    
+  headingdiv.append(p, p1, p2, p3);
+  table.append(headingdiv);
 
-    
+  data.forEach((data) => {
+    let contentdiv = document.createElement("div");
+    contentdiv.classList.add("table-content");
+    let p1 = document.createElement("p");
+    let p2 = document.createElement("p");
+    let p3 = document.createElement("p");
+    let p4 = document.createElement("p");
+
+    p1.innerText = data.task;
+    p2.innerText = data.totalDuration;
+    p3.innerText = "0";
+    p4.innerText = "0";
+
+    contentdiv.append(p1, p2, p3, p4);
+    table.append(contentdiv);
   });
+}
 
-
-
-
-
-
-  /**table  */
-
- 
-
-  let table=document.getElementById("table")
-  let totalhrs=document.getElementById("durationContainer")
-
-  function appenddata(data)
-  {
-    let sum=0
-
-    table.innerHTML=""
-    let arr=[]
-    let headingdiv=document.createElement("div")
-    headingdiv.classList.add("heading")
-    let p=document.createElement("p")
-    let p1=document.createElement("p")
-    let p2=document.createElement("p")
-    let p3=document.createElement("p")
-
-    p.innerText="Title"
-    p1.innerText="Duration"
-    p2.innerText="Amount"
-    p3.innerText="Percentage"
-
-    headingdiv.append(p,p1,p2,p3)
-    table.append(headingdiv)
-
-    data.forEach((data)=>{
-
-      const hours = convertMsToHours(data.totalDuration);
-   
-      console.log(hours,data.totalDuration)
-    arr.push(hours)
-
-       
-     for(let j=0;j<data.timers.length;j++)
-     {
-
-
-      
-      let contentdiv=document.createElement("div")
-      contentdiv.classList.add("table-content")
-
-      let p1=document.createElement("p")
-      let p2=document.createElement("p")
-      let p3=document.createElement("p")
-      let p4=document.createElement("p")
- 
-      
-      p1.innerText=data.timers[j].task[0].name
-    
-      const formattedTime = convertMsToHMS(data.timers[j].duration);
-      p2.innerText=formattedTime
-
-      const seconds = convertMsToSeconds(data.timers[j].duration);
-      const percentage = convertSecondsToPercentage(seconds);
-    
-    p3.innerText="0"
-    p4.innerText=`${percentage}%`
- 
-    contentdiv.append(p1,p2,p3,p4)
-    table.append(contentdiv)
-
-     }
-   
-     sum=data.totalDuration
-
-   
-   
-    })
-      
-    const formattedTime = convertMsToHMS(sum);
-    totalhrs.innerText=formattedTime
-
-    console.log(arr)
-    data1.length=arr
-    
-    bargraph(data1)
-
-    const averageDurationPercentage = calculateAverageDurationPercentage(sum, data.length);
-    console.log(averageDurationPercentage)
-   
-    avg(averageDurationPercentage)
-  }
-  
-
-  
-
-
-
-
-  // Get the duration value in seconds
-
+// Get the duration value in seconds

@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TimeTrace-calender</title>
     <link rel="stylesheet" href="calender.css" />
@@ -13,23 +16,9 @@
   </head>
   <body>
     <div>
-      <!-- dropdown for list, day-wise, week-wise -->
-      <button id="calender">Calender</button>
-
-      <button id="list">List</button>
-      <button id="day_view">Day Wise</button>
-      <button id="week_view">Week wise</button>
       <div id="container"></div>
-      <div class="calender-container">
-        <header class="calender-header">
-          <p class="calender-current-date"></p>
-          <div class="calender-navigation">
-            <span id="calender-prev" class="material-symbols-rounded">
-              chevron_left
-            </span>
-          </div>
-        </header>
-      </div>
+
+      <div id="calendar"></div>
     </div>
   </body>
   <script src="calender.js"></script>

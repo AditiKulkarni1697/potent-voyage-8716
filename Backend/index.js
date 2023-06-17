@@ -1,28 +1,30 @@
-
 // NPM Install
 require("dotenv").config();
-const path = require("path")
-const express = require("express")
-const cors = require("cors");
-const passport = require("passport")
-const cookieParser = require("cookie-parser")
-const session = require("express-session")
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+
+const path = require("path")
+const bcrypt = require("bcrypt")
+const express = require("express")
+
+const cors = require("cors");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 // Project files import
-require("./google-oauth")
-const {connection} = require("./db");
-const {isLoggedIn} = require("./middlewares/isLogged")
-const {authenticate} = require("./middlewares/authentication.middleware")
-
-
+require("./google-oauth");
+const { connection } = require("./db");
+const { isLoggedIn } = require("./middlewares/isLogged");
+const { authenticate } = require("./middlewares/authentication.middleware");
 
 const { userRoute } = require("./routes/user.routes");
 const { projectRoute } = require("./routes/project.route");
 const { calenderRouter } = require("./routes/calender.route");
 const { timerRoute } = require("./routes/timer.route");
 const { taskRoute } = require("./routes/task.route");
+const {UserModel} = require("./models/user.model")
 
 const app = express();
 app.use(express.json());
@@ -41,12 +43,10 @@ app.use("/project", projectRoute);
 app.use(authenticate)
 app.use("/task", taskRoute);
 
-
-
 // app.get('/auth/google',
 //   passport.authenticate('google', { scope: ['profile','email'] }));
 
-// app.get('/auth/google/callback', 
+// app.get('/auth/google/callback',
 //   passport.authenticate('google', {successRedirect: '/', failureRedirect: '/login', session : false}),
 //   function(req, res) {
 //     // Successful authentication, redirect home.
@@ -54,44 +54,73 @@ app.use("/task", taskRoute);
 //     res.redirect('/');
 //   });
 
-
 // Oauth google passport oauth2
 
-app.use(session({
-    secret: 'keyboard cat',
+app.use(
+  session({
+    secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
-  }))
-  app.use(passport.initialize())
-  app.use(passport.session())
+    cookie: { secure: false },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
-));
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
 
-app.get( '/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/protected',
-        failureRedirect: '/auth/google/failure'
-}));
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/protected",
+    failureRedirect: "/auth/google/failure",
+  })
+);
 
-// app.get("/auth/google/success",(req,res)=>{
-//     res.redirect("http://localhost:9090/Frontend/homepage/index.html")
-// })
-
-app.get("/auth/google/failure",(req,res)=>{
-    res.send("Failed !")
+app.get("/auth/google/success",(req,res)=>{
+    res.redirect("http://localhost:5501/Frontend/homepage/index.html")
 })
 
-app.get('/protected',  (req, res) => {
-    res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed !");
+});
+
+app.get('/protected', async (req, res) => {
+      console.log(req.user)
+    
+      console.log(req.user.emails)
+      
+      const isUserPresent = await UserModel.findOne({email:req.user._json.email})
+      // console.log(isUserPresent)
+      if(!isUserPresent){
+          let password = "12345"
+          const hashPass = await bcrypt.hash(password,4);
+          const user = {
+            name : req.user._json.name,
+            email : req.user._json.email,
+            password : hashPass
+          }
+          
+          const newUser = new UserModel(user)
+          await newUser.save()
+          res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }else{
+        res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }
   });
 
 
 
+app.get("/protected", (req, res) => {
+  res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+});
+
 //   Github Authentication
+
 
 app.get("/auth/github",async(req,res)=>{
 
@@ -108,14 +137,34 @@ app.get("/auth/github",async(req,res)=>{
             client_secret : process.env.GITHUB_CLILENT_SECRET,
             code 
         })
-    }).then((res)=> {
-        res.json()
-        // res.cookie("accessToken",res.access_token)
+    }).then(response => {
+      return response.json()
     })
 
     console.log(accessToken)
+    res.cookie("accessToken",accessToken.access_token)
 
-    res.send("Sign in with github successful")
+    const user = await fetch("https://api.github.com/user",{
+      headers : {
+        Authorization : `Bearer ${accessToken.access_token}`
+      }
+    })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+
+    console.log(user)
+
+    const useremail = await fetch("https://api.github.com/user/emails",{
+      headers : {
+        Authorization : `Bearer ${accessToken.access_token}`
+      }
+    })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+
+    console.log(useremail)
+
+    res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html")
 })
 
 app.get('/login',  (req, res) => {
@@ -132,6 +181,7 @@ app.get("/auth/protected", isLoggedIn, (req, res) => {
   res.send("Hello there!");
 });
 
+// Connection to the server
 app.listen(process.env.PORT || 3000, async () => {
   console.log(`server is running on port ${process.env.PORT}`);
   try {

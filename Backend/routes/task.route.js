@@ -1,6 +1,8 @@
 const express = require("express");
 
 const { TasktModel } = require("../models/task.model");
+const { TimerModel } = require("../models/timer.model");
+const mongoose = require("mongoose");
 
 const taskRoute = express.Router();
 
@@ -8,14 +10,19 @@ const taskRoute = express.Router();
 taskRoute.post("/create", async (req, res) => {
   try {
     const { name, description, projectId } = req.body;
+    const timer = new TimerModel({
+      projectId,
+    });
+    const savedTimer = await timer.save();
     const task = new TasktModel({
       name,
       description,
       projectId,
+      timerId: savedTimer._id,
     });
+    const savedTask = await task.save();
 
-    await task.save();
-    res.status(200).json({ task });
+    res.status(200).json({ savedTask, savedTimer });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Failed to create task" });
@@ -36,11 +43,12 @@ taskRoute.get("/", async (req, res) => {
 taskRoute.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const task = await TasktModel.findById(id);
+    const task = await TasktModel.findById(id).populate("timerId").exec();
+
     if (!task) {
       return res.status(404).json({ error: "task not found" });
     }
-    res.status(200).json({ task });
+    res.status(200).json(task);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch task" });
