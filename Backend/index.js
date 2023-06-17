@@ -2,6 +2,7 @@
 // NPM Install
 require("dotenv").config();
 const path = require("path")
+const bcrypt = require("bcrypt")
 const express = require("express")
 const cors = require("cors");
 const passport = require("passport")
@@ -23,6 +24,7 @@ const { projectRoute } = require("./routes/project.route");
 const { calenderRouter } = require("./routes/calender.route");
 const { timerRoute } = require("./routes/timer.route");
 const { taskRoute } = require("./routes/task.route");
+const {UserModel} = require("./models/user.model")
 
 const app = express();
 app.use(express.json());
@@ -83,8 +85,28 @@ app.get("/auth/google/failure",(req,res)=>{
     res.send("Failed !")
 })
 
-app.get('/protected',  (req, res) => {
-    res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+app.get('/protected', async (req, res) => {
+      console.log(req.user)
+    
+      console.log(req.user.emails)
+      
+      const isUserPresent = await UserModel.findOne({email:req.user._json.email})
+      // console.log(isUserPresent)
+      if(!isUserPresent){
+          let password = "12345"
+          const hashPass = await bcrypt.hash(password,4);
+          const user = {
+            name : req.user._json.name,
+            email : req.user._json.email,
+            password : hashPass
+          }
+          
+          const newUser = new UserModel(user)
+          await newUser.save()
+          res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }else{
+        res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }
   });
 
 
@@ -106,32 +128,39 @@ app.get("/auth/github",async(req,res)=>{
             client_secret : process.env.GITHUB_CLILENT_SECRET,
             code 
         })
-    }).then((res)=> {
-        res.json()
-        // res.cookie("accessToken",res.access_token)
+    }).then(response => {
+      return response.json()
     })
 
     console.log(accessToken)
+    res.cookie("accessToken",accessToken.access_token)
 
-    res.send("Sign in with github successful")
+    const user = await fetch("https://api.github.com/user",{
+      headers : {
+        Authorization : `Bearer ${accessToken.access_token}`
+      }
+    })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+
+    console.log(user)
+
+    const useremail = await fetch("https://api.github.com/user/emails",{
+      headers : {
+        Authorization : `Bearer ${accessToken.access_token}`
+      }
+    })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+
+    console.log(useremail)
+
+    res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html")
 })
 
 app.get('/login',  (req, res) => {
     res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
   });
-
-// Connection to the server
-app.listen(process.env.PORT || 3000 , async()=>{
-    console.log(`server is running on port ${process.env.PORT}`)
-    try {
-        await connection
-        console.log("Connect to DataBase")
-    } catch (error) {
-        console.log(error.message)
-        console.log("Cannot connect to DataBase")
-    }
-})
-
 
 
 app.get("/auth/protected", isLoggedIn, (req, res) => {
