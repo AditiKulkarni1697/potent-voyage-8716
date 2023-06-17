@@ -17,7 +17,6 @@ const timerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  taskId: { type: mongoose.Schema.Types.ObjectId, ref: "task" },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 
