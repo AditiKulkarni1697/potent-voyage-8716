@@ -1,307 +1,102 @@
-/* navbar */
-
-
-.nav{
-    display: flex;
-    position: fixed;
-    /* border: 1px solid red; */
-    background-color: rgb(227, 227, 227);
-    width: 99%;
-    justify-content: space-around;
-    margin-top: -7px;
-    
-}
-.nav img{
-    width:110% ;
-    height: 90px;
-    margin-top: 3px;
-    border-radius: 30px;
-}
-.features{
-    margin-right: 150px;
-    font-size: x-large;
-    color: black;
-    font-weight: lighter;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-top: 35px;
-    /* text-decoration: none; */
-}
-.sign{
-    margin-left: 30px;
-    font-size: x-large;
-    color: black;
-    font-weight: lighter;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    /* text-decoration: none; */
-    margin-top: 35px;
-}
-.try{
-    font-size: 30px;
-    color: black;
-    font-weight: bold;
-    margin-top: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border-radius: 10px;
-    border: none;
-    /* font-size: 25px; */
-}
-.try:hover{
-    border: 1px solid black;
-    background-color:rgb(227, 227, 227) ;
-}
-.nav a{
-    text-decoration: none;
+body {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-
-
-/* review */
-
-.review{
-    display: flex;
-    /* margin-top: 40px; */
-    /* background-color:rgb(227, 227, 227) ; */
-    margin-left: 575px;
+.logo {
+  width: 30%;
 }
-.review img{
-    height: 30px;
-    margin-top: 200px;
-    margin-left: 0px;
-    background-color:rgb(227, 227, 227) ;
-    width: 40px;
+nav {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #2c3e50;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
 }
-.review h3{
-    margin-top: 205px;
-    margin-left: 5px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rgb(108, 108, 108);
+.signIn_register_button {
+  display: flex;
 }
-
-
-
-
-.heading{
-    text-align: center;
-    font-size: 90px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: lighter;
-    margin-top: 20px;
+.signInBtn,
+.RegiterBtn {
+  background-color: #abb2b9;
+  border-radius: 8px;
+  height: 36px;
+  margin-right: 30px;
+  border: none;
 }
-.desc{
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: lighter;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: -20px;
+.features {
+  text-align: center;
 }
-
-
-
-
-.email{
-    margin-top: 60px;
+.features_quote_1 {
+  font-size: 80px;
 }
-.email input{
-    margin-left: 520px;
-    width: 300px;
-    height: 50px;
-    font-size: larger;
-    padding-left: 20px;
-    border-radius: 20px;
-    margin-right: 10px;
+.features_quote_2 {
+  font-size: 40px;
 }
-.email button{
-    width: 150px;
-    height: 55px;
-    font-size: larger;
-    border-radius: 20px;
+.featureQuoteBtn {
+  height: 92px;
+  width: 20%;
+  border-radius: 10px;
+  font-size: 24px;
 }
-
-
-
-.free{
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rgb(105, 105, 105);
-    margin-top: 30px;
+.report_analysis {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
-
-
-
-.img1{
-    margin-left: 90px;
+.report_analysis > div {
+  padding-left: 30px;
 }
-
-
-.hr{
-    color: black;
+.time_tracking {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
-
-
-
-.c1{
-    text-align: center;
-    font-size: 40px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-top: 100px;
+.time_tracking > div {
+  margin-left: 62px;
 }
-.c2{
-    text-align: center;
-    font-size: 25px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: lighter;
-    margin-left: 350px;
-    margin-right: 400px;
-    color: rgb(44, 44, 44);
+.heading {
+  font-size: 44px;
 }
-
-
-
-.flex{
-    display: flex;
-    margin-top: 80px;
+.content {
+  font-size: 24px;
+  margin-top: 32px;
 }
-.flex1{
-    width: 40%;
-    margin-left: 110px;
-    margin-right: 50px;
+.report_analysis_heading,
+.time_tracking_heading {
+  margin-right: 40px;
 }
-.flex2{
-    width: 40%;
+.time_tracking_Btn,
+.report_analysis_Btn {
+  height: 36px;
+  font-size: 20px;
+  margin-top: 22px;
+  background-color: #abb2b9;
+  border-radius: 8px;
+  border: none;
 }
-.flex2 img{
-    width: 110%;
-    margin-top: 160px;
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: #2c3e50;
+  color: #fff;
+  font-size: 16px;
 }
-.flex1 h1{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: lighter;
+footer > div {
+  margin-right: 150px;
+  margin-left: 150px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
+  font-size: 20px;
 }
-.flex1 h1:hover{
-    color: rgb(78, 78, 78);
-}
-.flex1 p{
-    font-size: large;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: lighter;
-    color: rgb(77, 77, 77);
-}
-
-
-
-
-.btn{
-    width: 20%;
-    height: 50px;
-    font-size: larger;
-    background-color: rgb(227, 227, 227);
-    margin-top: 30px;
-    margin-left: 110px;
-    border: none;
-    border-radius: 20px;
-    margin-bottom: 90px;
-}
-.btn:hover{
-    background-color: rgb(188, 187, 187);
-    border: 1px solid grey;
-}
-
-
-
-
-
-.p1{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    color: rgb(80, 79, 79);
-    margin-top: 110px;
-}
-.p2{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-    font-size: 45px;
-    font-weight: lighter;
-}
-.p3{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    text-align: center;
-    font-weight: lighter;
-    margin-left: 160px;
-    margin-right: 160px;
-    color: rgb(46, 46, 46);
-    margin-bottom: 60px;
-}
-
-
-
-
-.i1 a img{
-    /* border: 1px solid red; */
-    width: 19%;
-    margin-right: -30px;
-    margin-left: 85px;
-    background-color: rgb(239, 239, 239);
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-}
-.i1 a img:hover{
-    background-color: rgb(230, 229, 229);
-}
-
-
-
-.i2 a img{
-    /* border: 1px solid red; */
-    width: 19%;
-    margin-right: -30px;
-    margin-left: 85px;
-    background-color: rgb(239, 239, 239);
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    margin-top: 30px;
-}
-.i2 a img:hover{
-    background-color: rgb(230, 229, 229);
-}
-
-
-
-
-.btn2{
-    margin-top: 50px;
-    width: 240px;
-    height: 50px;
-    font-size: larger;
-    background-color: rgb(208, 207, 207);
-    border: none;
-    font-weight: bold;
-    margin-left: 630px;
-    border-radius: 20px;
-    margin-bottom: -25px;
-}
-.btn2:hover{
-    background-color: rgb(230, 229, 229);
-    border: 1px solid grey;
-}
-
-
-
-
-
-.cl{
-    background-color: rgb(227, 227, 227);
-    border: 1px solid rgb(227, 227, 227);
-    margin-top: 80px;
-}
-#p4{
-    margin-top: 60px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    color: rgb(80, 79, 79);
+footer > div > div {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 20px;
 }

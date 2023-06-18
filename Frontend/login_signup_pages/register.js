@@ -1,15 +1,11 @@
-// const axios = require("axios")
-
-// const formEl = document.querySelector("form")
-// console.log(formEl)
 
 // catching form elements
 
-let firstName = document.getElementById("first-name");
-let lastName = document.getElementById("last-name");
+let firstName = document.getElementById("firstName");
+let lastName = document.getElementById("lastName");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
-let confirmPass = document.getElementById("confirm-password");
+// let confirmPass = document.getElementById("confirm-password");
 
 // const url = "http://localhost:5501"
 
@@ -37,13 +33,12 @@ const onsignup = async () => {
     lastName: lastName.value,
     email: email.value,
     password: password.value,
-    confirmPass: confirmPass.value,
   };
 
   console.log(obj);
 
   try {
-    let url = "http://localhost:5501/user/register";
+    let url = "http://localhost:9090/user/register";
 
     let responce = await fetch(url, {
       method: "POST",
