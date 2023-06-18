@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./project.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <title>TaskDetails</title>
+  </head>
+  <body>
+    <nav class="fs-3 d-flex justify-content-around">
+      <div class="alltasks">Task</div>
+      <div class="allprojects">Projects</div>
+    </nav>
+    <section>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Project Id</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created At</th>
+          </tr>
+        </thead>
+        <tbody id="taskDetailsList">
+          <!-- Populated dynamically with JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </body>
+  <script>
+    let project = JSON.parse(localStorage.getItem("projectId"));
+    let projectId = project.savedTask.projectId;
+    window.onload = () => {
+      fetch(`http://localhost:3300/task/tasks/${projectId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.tasks);
+          displayTaskDetails(res.tasks);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    function displayTaskDetails(tasks) {
+      const tableBody = document.getElementById("taskDetailsList");
+      tableBody.innerHTML = "";
+      tasks.forEach((task) => {
+        const row = document.createElement("tr");
+
+        const TasknameCell = document.createElement("td");
+        TasknameCell.textContent = task.name;
+
+        const TaskdescriptionCell = document.createElement("td");
+        TaskdescriptionCell.textContent = task.description;
+
+        const createdAtCell = document.createElement("td");
+        createdAtCell.textContent = dayjs(task.createdAt).format(
+          "MMM DD, YYYY h:mm A"
+        );
+
+        const ProjectIdcell = document.createElement("td");
+        ProjectIdcell.textContent = `${projectId}`;
+
+        row.appendChild(ProjectIdcell);
+        row.appendChild(TasknameCell);
+        row.appendChild(TaskdescriptionCell);
+        row.appendChild(createdAtCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    let allprojects = document.querySelector(".allprojects");
+    allprojects.addEventListener("click", () => {
+      window.location.href = "./project.html";
+    });
+  </script>
+</html>
