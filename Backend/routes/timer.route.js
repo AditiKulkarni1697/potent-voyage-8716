@@ -1,20 +1,13 @@
 const express = require("express");
 const timerRoute = express.Router();
 const { TimerModel } = require("../models/timer.model");
-const { TasktModel } = require("../models/task.model");
 const { authenticate } = require("../middlewares/authentication.middleware");
-const mongoose=require("mongoose")
-
-const mongoose=require("mongoose")
-
+const mongoose = require("mongoose");
 const { TasktModel } = require("../models/task.model");
-const { authenticate } = require("../middlewares/authentication.middleware");
-
 
 timerRoute.post("/", async (req, res) => {
   try {
     const { startTime, endTime, taskId } = req.body;
-   
 
     const time = new TimerModel({ startTime, endTime, taskId });
     await time.save();
@@ -27,56 +20,6 @@ timerRoute.post("/", async (req, res) => {
 timerRoute.post("/start", async (req, res) => {
   try {
     const { timerId } = req.body;
-
-
-   let {start,end}=req.params
-   let userId=req.userId
-   console.log(userId)
-   
-   const startDate = new Date(start);
-   startDate.setUTCHours(0, 0, 0, 0);
-   
-   const endDate = new Date(end);
-   endDate.setUTCHours(23, 59, 59, 999);
-console.log(startDate,endDate)
-
-const data = await TimerModel.aggregate([
-  {
-    $match: {
-      startTime: {
-        $gte: startDate,
-        $lte: endDate,
-      },
-    },
-  },
-  {
-    $lookup: {
-      from: "tasks",
-      localField: "_id",
-      foreignField: "timerId",
-      as: "task",
-    },
-  },
-  {
-    $sort: { startTime: 1 },
-  },
-  {
-    $group: {
-      _id: { $dateToString: { format: "%Y-%m-%d", date: "$startTime" } },
-      totalDuration: { $sum: "$duration" },
-      timers: { $push: "$$ROOT" },
-    },
-  },
-]);
-
-console.log(data);
-
-
-
-
-
-console.log(data);
-
 
     console.log(req.body);
 
@@ -97,7 +40,6 @@ console.log(data);
 timerRoute.post("/stop", async (req, res) => {
   try {
     const { timerId } = req.body;
-
 
     const time = await TimerModel.findById(timerId);
     time.stop();

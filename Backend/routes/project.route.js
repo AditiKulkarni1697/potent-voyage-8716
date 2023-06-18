@@ -31,6 +31,7 @@ projectRoute.get("/", async (req, res) => {
   }
 });
 
+//get a specific project
 projectRoute.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -44,6 +45,8 @@ projectRoute.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch project" });
   }
 });
+
+//update a project
 projectRoute.put("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -61,6 +64,7 @@ projectRoute.put("/:id", async (req, res) => {
   }
 });
 
+//delete a project
 projectRoute.delete("/:id", async (req, res) => {
   const { id } = req.params;
 

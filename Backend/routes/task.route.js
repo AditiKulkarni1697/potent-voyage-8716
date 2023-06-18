@@ -1,12 +1,11 @@
 const express = require("express");
-
 const { TasktModel } = require("../models/task.model");
 const { TimerModel } = require("../models/timer.model");
 const mongoose = require("mongoose");
 
 const taskRoute = express.Router();
 
-// Create a new project
+// Create a new task
 taskRoute.post("/create", async (req, res) => {
   try {
     const { name, description, projectId } = req.body;
@@ -21,7 +20,6 @@ taskRoute.post("/create", async (req, res) => {
       timerId: savedTimer._id,
     });
     const savedTask = await task.save();
-
     res.status(200).json({ savedTask, savedTimer });
   } catch (error) {
     console.log(error);
@@ -40,6 +38,20 @@ taskRoute.get("/", async (req, res) => {
   }
 });
 
+// Get all tasks of a specific project
+taskRoute.get("/tasks/:projectId", async (req, res) => {
+  const { projectId } = req.params;
+
+  try {
+    const tasks = await TasktModel.find({ projectId });
+    res.status(200).json({ tasks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch tasks" });
+  }
+});
+
+//get a specific task
 taskRoute.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -54,6 +66,8 @@ taskRoute.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch task" });
   }
 });
+
+//update the task
 taskRoute.put("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -71,6 +85,7 @@ taskRoute.put("/:id", async (req, res) => {
   }
 });
 
+//delete the task
 taskRoute.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
