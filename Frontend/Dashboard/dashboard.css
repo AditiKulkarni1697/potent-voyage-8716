@@ -126,17 +126,22 @@ margin-left: 1%;
 
 }
   .heading{
-    display: flex;
+   display: flex;
     justify-content: space-between;
+  }
+  .heading p{
+    width: 25%;
+    text-align: center;
   }
   .table-content{
     display: flex;
     justify-content: space-between;
   }
   .table-content p{
-    margin-right: 10%;
+   width: 25%;
+   text-align: center;
   }
-  
+
   
   
   

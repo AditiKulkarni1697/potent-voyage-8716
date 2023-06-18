@@ -40,7 +40,7 @@ app.use("/user", userRoute);
 app.use("/timer", timerRoute);
 app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
-app.use(authenticate)
+
 app.use("/task", taskRoute);
 
 // app.get('/auth/google',
