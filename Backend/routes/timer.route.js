@@ -5,11 +5,6 @@ const { TasktModel } = require("../models/task.model");
 const { authenticate } = require("../middlewares/authentication.middleware");
 const mongoose=require("mongoose")
 
-const mongoose=require("mongoose")
-
-const { TasktModel } = require("../models/task.model");
-const { authenticate } = require("../middlewares/authentication.middleware");
-
 
 timerRoute.post("/", async (req, res) => {
   try {
