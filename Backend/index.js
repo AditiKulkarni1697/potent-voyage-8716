@@ -16,7 +16,7 @@ const fetch = (...args) =>
 require("./google-oauth");
 const { connection } = require("./db");
 const { isLoggedIn } = require("./middlewares/isLogged");
-const { authenticate } = require("./middlewares/authentication.middleware");
+// const { authenticate } = require("./middlewares/authentication.middleware");
 
 const { userRoute } = require("./routes/user.routes");
 const { projectRoute } = require("./routes/project.route");
@@ -38,6 +38,7 @@ app.use("/user", userRoute);
 app.use("/timer", timerRoute);
 app.use("/calender", calenderRouter);
 app.use("/project", projectRoute);
+
 app.use("/task", taskRoute);
 
 app.use(
@@ -51,8 +52,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(
-  "/auth/google",
+app.get("/auth/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
@@ -103,7 +103,7 @@ app.get("/protected", async (req, res) => {
 });
 
 app.get("/protected", (req, res) => {
-  res.redirect("http://127.0.0.1:5501/Frontend/homepage/index.html");
+  res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
 });
 
 //   Github Authentication
@@ -140,7 +140,36 @@ app.get("/auth/github", async (req, res) => {
     .then((res) => res.json())
     .catch((err) => console.log(err));
 
-  console.log(user);
+
+    // console.log(useremail[0].email)
+
+    const isUserPresent = await UserModel.findOne({email:useremail[0].email})
+      // console.log(isUserPresent)
+      if(!isUserPresent){
+          let password = "12345"
+          const hashPass = await bcrypt.hash(password,4);
+          const users = {
+            name : user.name,
+            email : useremail[0].email,
+            password : hashPass
+          }
+          
+          const newUser = new UserModel(users)
+          await newUser.save()
+          res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }else{
+        res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html");
+      }
+
+    // res.redirect("http://127.0.0.1:5501/Frontend/project_timer_pages/project.html")
+})
+
+app.get('/login',  (req, res) => {
+    res.redirect("http://127.0.0.1:5501/Frontend/login_signup_pages/register.html");
+  });
+
+  
+
 
   const useremail = await fetch("https://api.github.com/user/emails", {
     headers: {
