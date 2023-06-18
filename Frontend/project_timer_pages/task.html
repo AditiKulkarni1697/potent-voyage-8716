@@ -19,10 +19,9 @@
     <title>Task</title>
   </head>
   <body>
-    <nav>
-      <div>
-        <h1>Task</h1>
-      </div>
+    <nav class="fs-3 d-flex justify-content-around">
+      <div class="alltasks">Task</div>
+      <div class="allprojects">Projects</div>
     </nav>
 
     <main class="d-flex">
@@ -172,5 +171,17 @@
 
       tableBody.appendChild(row);
     }
+
+    const allTasks = document.querySelector(".alltasks");
+    const allProjects = document.querySelector(".allprojects");
+
+    allProjects.addEventListener("click", () => {
+      window.location.href = "./project.html";
+    });
+
+    allTasks.addEventListener("click", () => {
+      window.location.href = "./taskDetails.html";
+      
+    });
   </script>
 </html>

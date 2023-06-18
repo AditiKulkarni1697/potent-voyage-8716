@@ -37,6 +37,8 @@
         >
           Create Project <span>+</span>
         </button>
+        <!-- <button>Report and Analysis</button>
+        <button>calender</button> -->
       </aside>
 
       <section class="flex-grow-1 table-section card rounded-4 m-3">
@@ -199,18 +201,7 @@
         .catch((err) => console.log(err));
     };
 
-    //creates task
-
-    // const createTask = () => {
-    //   const data = {
-    //     name: document.getElementById("task_name").value,
-    //     description: document.getElementById("task_description").value,
-    //     projectId: "",
-    //   };
-
-    //   console.log(data);
-    // };
-
+    //create task
     const createTask = () => {
       const data = {
         name: document.getElementById("task_name").value,
@@ -229,6 +220,7 @@
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          localStorage.setItem("projectId", JSON.stringify(res));
           window.location.href = `./task.html?taskId=${res.savedTask._id}`;
         })
         .catch((err) => console.log(err));
