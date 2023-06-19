@@ -51,7 +51,7 @@
     let t1Interval;
 
     const loadTask = () => {
-      fetch(`http://localhost:3300/task/${taskId}`, {
+      fetch(`http://localhost:9090/task/${taskId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@
     window.onload = loadTask;
 
     const startTimer = async (timerId) => {
-      const res = await fetch(`http://localhost:3300/timer/start`, {
+      const res = await fetch(`http://localhost:9090/timer/start`, {
         method: "POST",
         body: JSON.stringify({
           timerId,
@@ -83,7 +83,7 @@
     };
 
     const stopTimer = async (timerId) => {
-      const res = await fetch(`http://localhost:3300/timer/stop`, {
+      const res = await fetch(`http://localhost:9090/timer/stop`, {
         method: "POST",
         body: JSON.stringify({
           timerId,
@@ -181,7 +181,6 @@
 
     allTasks.addEventListener("click", () => {
       window.location.href = "./taskDetails.html";
-      
     });
   </script>
 </html>

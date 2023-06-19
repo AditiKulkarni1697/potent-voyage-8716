@@ -1,10 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif:ital@0;1&family=Roboto:wght@300;400;500&family=Satisfy&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #d5d8dc;
+  background-color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
 }
-
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  /* top: 25%; */
+  justify-content: center;
+  align-items: center;
+}
 .container {
   display: grid;
   grid-template-columns: 60% 40%;
@@ -12,25 +21,30 @@
   width: 90%;
   margin: auto;
 }
-
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .left .first {
   width: 80%;
 }
-
 .right {
   padding: 15px 15px;
   margin-top: 20px;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, inset rgba(0, 0, 0, 0.07) 0px 2px 4px, inset rgba(0, 0, 0, 0.07) 0px 4px 8px, inset rgba(0, 0, 0, 0.07) 0px 8px 16px, inset rgba(0, 0, 0, 0.07) 0px 16px 32px, inset rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+    inset rgba(0, 0, 0, 0.07) 0px 2px 4px, inset rgba(0, 0, 0, 0.07) 0px 4px 8px,
+    inset rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    inset rgba(0, 0, 0, 0.07) 0px 16px 32px,
+    inset rgba(0, 0, 0, 0.07) 0px 32px 64px;
   border-radius: 7px;
 }
-
 .right h1 {
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
-  background-color: #d5d8dc;
+  background-color: #f2f5fa;
   padding-bottom: 10px;
 }
-
 .right .signupOpt {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -41,7 +55,6 @@
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
-
 .google a,
 .github a {
   color: black;
@@ -50,85 +63,69 @@
   justify-content: center;
   align-items: center;
 }
-
 .google {
   border-right: 3px solid;
 }
-
-
 .google img {
   width: 14%;
   margin-right: 15px;
   border-radius: 50%;
   /* border: 1px solid red; */
-  /* background-color: #d5d8dc; */
+  /* background-color: #D5D8DC; */
 }
-
 .github i {
   margin-right: 15px;
   font-size: 30px;
 }
-
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .form div {
   margin-bottom: 15px;
 }
-
 .form label {
   display: block;
   font-size: 20px;
   padding-bottom: 5px;
 }
-
 .form input {
   width: 90%;
   padding: 8px;
   border-top: none;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; */
   font-size: medium;
   margin-left: 5px;
 }
-
 .form {
   width: 80%;
   margin: 25px auto 0 auto;
 }
-
 .or {
   width: 80%;
   margin: auto;
   margin-top: 10px;
 }
-
 .forgotPass {
   width: 90%;
   display: grid;
   /* border: 1px solid; */
   grid-template-columns: repeat(2, 1fr);
 }
-
 .checkbox {
   display: flex;
-
 }
-
 #checkboxInp {
   width: 15px;
   margin-right: 10px;
   box-shadow: none;
   border: none;
 }
-
 .fp p {
   text-align: end;
 }
-
 .btn {
   width: 90%;
   display: flex;
@@ -138,7 +135,6 @@
   align-items: center;
   margin-bottom: 20px;
 }
-
 .btn button {
   font-size: 22px;
   padding: 5px 20px;
@@ -147,11 +143,11 @@
   border-top: none;
   border-bottom: none;
 }
-
+.signupLink a {
+  text-decoration: none;
+}
 /* ++++++++++++++++++++++++ */
-
 .first {
-
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -160,32 +156,38 @@
   align-items: center;
   /* border: 2px solid green; */
 }
-
 .first .logo {
   width: 50%;
   /* border: 1px solid red; */
   border-radius: 5px;
   margin-bottom: 1rem;
 }
-
 .first p {
   margin: 0 0 10px 10px;
 }
-
 .first p i {
   font-size: 50px;
   /* font-family: 'Satisfy', cursive; */
-
 }
-
 #bg_img {
   width: 100%;
   height: 100vh;
   position: relative;
   /* border: 1px solid black; */
 }
-
 .tick {
   display: flex;
   margin-left: 10px;
+  margin-top: 15px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.tick img {
+  width: 1.2em;
+  /* border: 2px solid; */
+}
+@media screen and (max-width: 900px) {
+  .left {
+    display: none;
+  }
 }

@@ -20,25 +20,32 @@
   </head>
   <body>
     <nav>
-      <div>
+      <div class="d-flex justify-content-between mx-3">
         <h1>Projects</h1>
+        <button class="btn btn-sm btn-danger logoutBtn">LOGOUT</button>
       </div>
     </nav>
 
     <main class="d-flex">
-      <aside
-        class="rounded-4 m-3 d-flex justify-content-center align-items-start"
-      >
-        <button
-          type="button"
-          class="btn btn-secondary mt-3"
-          data-bs-toggle="modal"
-          data-bs-target="#create-project-modal"
-        >
-          Create Project <span>+</span>
-        </button>
-        <!-- <button>Report and Analysis</button>
-        <button>calender</button> -->
+      <aside class="rounded-4 m-3">
+        <div>
+          <button
+            type="button"
+            class="btn btn-secondary my-3"
+            data-bs-toggle="modal"
+            data-bs-target="#create-project-modal"
+          >
+            Create Project <span>+</span>
+          </button>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-secondary dashboard">
+            Report and Analysis
+          </button>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-secondary calender">calender</button>
+        </div>
       </aside>
 
       <section class="flex-grow-1 table-section card rounded-4 m-3">
@@ -175,7 +182,7 @@
         description: document.getElementById("project_description").value,
       };
 
-      fetch("http://localhost:3300/project/create", {
+      fetch("http://localhost:9090/project/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -185,7 +192,7 @@
         .then((res) => res.json())
         .then((res) => {
           if (res) {
-            fetch("http://localhost:3300/project/", {
+            fetch("http://localhost:9090/project/", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -210,7 +217,7 @@
       };
       console.log(data);
 
-      fetch("http://localhost:3300/task/create", {
+      fetch("http://localhost:9090/task/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -227,7 +234,7 @@
     };
 
     window.onload = () => {
-      fetch("http://localhost:3300/project/", {
+      fetch("http://localhost:9090/project/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -285,5 +292,20 @@
         tableBody.appendChild(row);
       });
     }
+
+    let dashboard = document.querySelector(".dashboard");
+
+    dashboard.addEventListener("click", () => {
+      window.location.href = "../Dashboard/dashboard.html";
+    });
+    let calender = document.querySelector(".calender");
+    calender.addEventListener("click", () => {
+      window.location.href = "../project_timer_pages/calender/calender.html";
+    });
+
+    let logout = document.querySelector(".logoutBtn");
+    logout.addEventListener("click", () => {
+      window.location.href = "../homepage/index.html";
+    });
   </script>
 </html>

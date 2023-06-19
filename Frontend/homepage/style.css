@@ -100,3 +100,9 @@ footer > div > div {
   padding-bottom: 4px;
   font-size: 20px;
 }
+.time_tracking_image {
+  width: 800px;
+}
+.time_tracking_image img {
+  width: 100%;
+}

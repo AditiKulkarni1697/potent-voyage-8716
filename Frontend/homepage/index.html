@@ -45,23 +45,41 @@
         </div>
         <button class="report_analysis_Btn">Time Trace Free</button>
       </div>
-      <div><img src="./images/report.webp" alt="" />;</div>
+      <div class="flex-grow-1 time_tracking_image">
+        <img src="./images/Screenshot 2023-06-18 200031.png" alt="" />;
+      </div>
     </div>
 
-    <div class="time_tracking">
-      <div class="time_tracking_heading">
-        <div class="heading">Time tracking software</div>
+    <div class="report_analysis">
+      <div class="report_analysis_heading">
+        <div class="heading">
+          Time tracking <br />
+          software
+        </div>
         <div class="content">
           An intuitive, lightweight solution for <br />
           tracking hours and projectsthat’s <br />
           easy to adopt and use daily.
         </div>
-        <button class="time_tracking_Btn">Time Trace Free</button>
+        <button class="report_analysis_Btn">Time Trace Free</button>
       </div>
-      <div>
-        <img src="./images/timeTracing.webp" alt="" />
+      <div class="flex-grow-1 time_tracking_image">
+        <img src="./images/Screenshot 2023-06-18 200126.png" alt="" />;
       </div>
     </div>
+
+    <!-- <div class="time_tracking">
+      <div class="time_tracking_heading">
+        <div class="heading"></div>
+        <div class="content">
+        
+        </div>
+        <button class="time_tracking_Btn">Time Trace Free</button>
+      </div>
+      <div class="time_tracking_image">
+        <img src="./images/Screenshot 2023-06-18 200126.png" alt="" />
+      </div>
+    </div> -->
     <footer>
       <div>Time Trace</div>
       <div>
@@ -94,4 +112,16 @@
       </div>
     </footer>
   </body>
+  <script>
+    let signInBtn = document.querySelector(".signInBtn");
+    signInBtn.addEventListener("click", () => {
+      window.location.href = "../login_signup_pages/login.html";
+    });
+
+    let registerBtn = document.querySelector(".RegiterBtn");
+
+    registerBtn.addEventListener("click", () => {
+      window.location.href = "../login_signup_pages/register.html";
+    });
+  </script>
 </html>

@@ -1,151 +1,191 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif:ital@0;1&family=Roboto:wght@300;400;500&family=Satisfy&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Space Grotesk", sans-serif;
-  }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
+}
 body {
-    background-color: #f2f2f2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  /* top: 25%; */
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 20px;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+}
+.left .first {
+  width: 90%;
+}
+.right {
+  padding: 15px 15px;
+  margin-top: 20px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+    inset rgba(0, 0, 0, 0.07) 0px 2px 4px, inset rgba(0, 0, 0, 0.07) 0px 4px 8px,
+    inset rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    inset rgba(0, 0, 0, 0.07) 0px 16px 32px,
+    inset rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  border-radius: 7px;
+}
+.right h1 {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  background-color: #f2f5fa;
+  padding-bottom: 10px;
+}
+.right .signupOpt {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* border: 1px solid ; */
+  /* justify-content: space-evenly; */
+  padding: 5px 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.google a,
+.github a {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.google {
+  border-right: 3px solid;
+}
+.google img {
+  width: 14%;
+  margin-right: 15px;
+  border-radius: 50%;
+  /* border: 1px solid red; */
+  /* background-color: #D5D8DC; */
+}
+.github i {
+  margin-right: 15px;
+  font-size: 30px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form div {
+  margin-bottom: 15px;
+}
+.form label {
+  display: block;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+.form input {
+  width: 90%;
+  padding: 8px;
+  border-top: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  font-size: medium;
+  margin-left: 5px;
+  /* background-color: #F2F5FA; */
+}
+.form {
+  width: 80%;
+  margin: 25px auto 0 auto;
+}
+.or {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+}
+.forgotPass {
+  width: 90%;
+  display: grid;
+  /* border: 1px solid; */
+  grid-template-columns: repeat(2, 1fr);
+}
+.checkbox {
+  display: flex;
+}
+#checkboxInp {
+  width: 15px;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
+}
+.fp p {
+  text-align: end;
+}
+.btn {
+  width: 90%;
+  display: flex;
+  /* border: 1px solid; */
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.btn button {
+  font-size: 22px;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: 4px solid grey;
+  border-top: none;
+  border-bottom: none;
+}
+.signupLink a {
+  text-decoration: none;
+}
+/* ++++++++++++++++++++++++ */
+.first {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px 10px;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid green; */
+}
+.first .logo {
+  width: 50%;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.first p {
+  margin: 0 0 10px 10px;
+}
+.first p i {
+  font-size: 50px;
+  /* font-family: 'Satisfy', cursive; */
+}
+#bg_img {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  /* border: 1px solid black; */
+}
+.tick {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 15px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.tick img {
+  width: 1.2em;
+  /* border: 2px solid; */
+}
+@media screen and (max-width: 900px) {
+  .left {
+    display: none;
   }
-
-  .container {
-    /* max-width: 400px; */
-    width: 90%;
-    /* margin: auto; */
-    padding: 20px;
-    background-color:  #fff8f1 ;
-    border-radius: 5px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-
-  .container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .container label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  .container input[type="text"],
-  .container input[type="email"],
-  .container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-  }
-
-  .container .btn-submit {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  .container .btn-submit:hover {
-    background-color: #45a049;
-  }
-
-  .container .login-link {
-    text-align: center;
-}
-
-.signUpwithG{
-    /* display: grid;
-    grid-template-columns: repeat(2,1fr); */
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    padding: 8px;
-    border-radius: 10px;
-    border: none;
-    margin: 20px auth;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.signUpwithG p{
-    font-size: 17px;
-    
-}
-
-.signUpwithG .googleImg{
-    width: 10%;
-    
-}
-.first{
-   
-    display: flex;
-    flex-direction: column;
-   margin: auto;
-   padding: 20px 10px;
-   justify-content: center;
-   align-items: center;
-   /* border: 2px solid green; */
-}
-
-.first .logo{
-    width: 50%;
-    /* border: 1px solid red; */
-    border-radius: 5px;
-    margin-bottom: 1rem;
-}
-.first p{
-    margin:0 0 10px 10px;
-}
-
-.first p i{
-    font-size: 50px;
-    /* font-family: 'Satisfy', cursive; */
-    
-}
-#bg_img{
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    /* border: 1px solid black; */
-}
-
-.main-container{
-    /* display: flex; */
-    position: absolute;
-    display: grid;
-    grid-template-columns: 55% 45%;
-    gap: 20px;
-    margin: auto;
-    width: 90%;
-    align-items: center;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #EAEDED;
-    top: 2em;
-    right: 5%;
-    background: transparent;
-    /* border: 2px solid ; */
-}
-.option {
-    text-align: center;
-    margin: 15px 0;
-}
-
-.tick{
-    display: flex;
-    margin-left: 10px;
-}
-
-
-
-.center{
-    display: inline-block;
-    align-items: center;
-    justify-content: center;
 }

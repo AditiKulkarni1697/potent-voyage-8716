@@ -1,118 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register page</title>
-    <link rel="stylesheet" href="register.css">
-    <script src="https://kit.fontawesome.com/8f8488f52c.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="register.css" />
+    <script
+      src="https://kit.fontawesome.com/8f8488f52c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div class="container">
-        <div class="left">
-            <div class="first">
-                <img
-                  src="/Frontend/login_signup_pages/images/Time clock vector logo fast service stopwatch template.png"
-                  alt=""
-                  class="logo"
-                />
-        
-                <p><i>Finally, time tracking your team actually wants to use</i></p>
-        
-                <div>
-                  <div class="tick">
-                    <img
-                      src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
-                      alt=""
-                      class="center"
-                    />
-                    <p>
-                      Time Tracking. Easy and intuitive time tracking that captures all
-                      your time without changing the way you work.
-                    </p>
-                  </div>
-                  <div class="tick">
-                    <img
-                      src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
-                      alt=""
-                      class="center"
-                    />
-                    <p>
-                      Time Tracking. Easy and intuitive time tracking that captures all
-                      your time without changing the way you work.
-                    </p>
-                  </div>
-                  <div class="tick">
-                    <img
-                      src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
-                      alt=""
-                      class="center"
-                    />
-                    <p>
-                      Time Tracking. Easy and intuitive time tracking that captures all
-                      your time without changing the way you work.
-                    </p>
-                  </div>
-                </div>
-              </div>
+      <div class="left">
+        <div class="first">
+          <img
+            src="/Frontend/login_signup_pages/images/Time clock vector logo fast service stopwatch template.png"
+            alt=""
+            class="logo"
+          />
+          <p><i>Finally, time tracking your team actually wants to use</i></p>
+          <div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Time Tracking.</b> Easy and intuitive time tracking that
+                captures all your time without changing the way you work.
+              </p>
+            </div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Reports & Analysis.</b> Instantly create reports across
+                projects. Budgets, time, team capacity, cost breakdowns, and
+                more.
+              </p>
+            </div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Invoicing & Payments.</b> Turn tracked time into invoices.
+                Accept online payments. Integrate with QuickBooks and Xero.
+              </p>
+            </div>
+          </div>
         </div>
-
-
-        <div class="right">
-            <h1 class="center">Sign Up</h1>
-            <div class="signupOpt">
-                <div class="google center"><a href="http://localhost:9090/auth/google"><img src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo-thumbnail.png" alt=""><h3>Sign Up with Google</h3></a></div>
-                <div class="github center"><a href="https://github.com/login/oauth/authorize?client_id=8fc61052a479b4fdab08&scope=read:user,user:email"><i class="fa-brands fa-github "></i><h3>Sign Up with GitHub</h3></a></div>
-            </div>
-
-            <div class="or center">
-                <h3>------------------------- OR -------------------------</h3>
-            </div>
-
-            <div class="form">
-                <div>
-                    <label for="firstName">First Name:</label>
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="firstName" id="firstName" placeholder="Enter Your First Name..." >
-                </div>
-                <div>
-                    <label for="lastName">Last Name:</label>
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="lastName" id="lastName" placeholder="Enter Your last Name...">
-                </div>
-               <div>
-                    <label for="email">Email:</label>
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" name="email" id="email" placeholder="Enter Your email...">
-               </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <i class="fa-solid fa-star"></i>
-                    <input type="password" name="password" id="password" placeholder="Enter Your password...">
-                </div>
-
-                <div class="forgotPass">
-                    <div class="checkbox">
-                        <input type="checkbox" name="" id="checkboxInp">
-                        <p>Remember me</p>
-                    </div>
-                    <div class="fp">
-                        <p>forgot password</p>
-                    </div>
-
-                </div>
-
-                <div class="btn">
-                    <button onclick="onsignup()">Signup</button>
-                </div>
-                <div>
-                    <p>Already have an Account? <a href="./login.html"> Login</a></p>
-                </div>
-            </div>
-
+      </div>
+      <div class="right">
+        <h1 class="center">Sign Up to Time-Trace</h1>
+        <div class="signupOpt">
+          <div class="google center">
+            <a href="http://localhost:9090/auth/google"
+              ><img
+                src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo-thumbnail.png"
+                alt=""
+              />
+              <h3>Sign Up with Google</h3></a
+            >
+          </div>
+          <div class="github center">
+            <a
+              href="https://github.com/login/oauth/authorize?client_id=8fc61052a479b4fdab08&scope=read:user,user:email"
+              ><i class="fa-brands fa-github"></i>
+              <h3>Sign Up with GitHub</h3></a
+            >
+          </div>
         </div>
+        <div class="or center">
+          <h3>------------------------- OR -------------------------</h3>
+        </div>
+        <div class="form">
+          <div>
+            <label for="firstName">First Name:</label>
+            <i class="fa-solid fa-user"></i>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="Enter Your First Name..."
+            />
+          </div>
+          <div>
+            <label for="lastName">Last Name:</label>
+            <i class="fa-solid fa-user"></i>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="Enter Your last Name..."
+            />
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <i class="fa-solid fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your email..."
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <i class="fa-solid fa-star"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Your password..."
+            />
+          </div>
+          <div class="forgotPass">
+            <div class="checkbox">
+              <input type="checkbox" name="" id="checkboxInp" />
+              <p>Remember me</p>
+            </div>
+            <div class="fp">
+              <p>forgot password</p>
+            </div>
+          </div>
+          <div class="btn">
+            <button onclick="onsignup()">Signup</button>
+          </div>
+          <div>
+            <p class="signupLink">
+              Already have an Account? <a href="./login.html"> Login</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-<!-- dfd -->
-<script src="register.js"></script>
+  </body>
+  <!-- dfd -->
+  <script src="register.js"></script>
 </html>

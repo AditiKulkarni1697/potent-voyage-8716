@@ -1,56 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <img src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/auras/aura-top-right-corner-signup.png" alt="" id="bg_img">
-   <div class="main-container">
-    <div class="first">
-        <img src="/Frontend/login_signup_pages/images/Time clock vector logo fast service stopwatch template.png" alt="" class="logo">
-
-        <p><i>Finally, time tracking your team actually wants to use</i></p>
-
-
-        <div>
-            <div class="tick">
-                <img src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg" alt="" class="center">
-                <p>Time Tracking. Easy and intuitive time tracking that captures all your time without changing the way you work.</p>
-            </div>
-            <div class="tick">
-                <img src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg" alt="" class="center">
-                <p>Time Tracking. Easy and intuitive time tracking that captures all your time without changing the way you work.</p>
-            </div>
-            <div class="tick">
-                <img src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg" alt="" class="center">
-                <p>Time Tracking. Easy and intuitive time tracking that captures all your time without changing the way you work.</p>
-            </div>
-        </div>
-
-    </div>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register page</title>
+    <link rel="stylesheet" href="./login.css" />
+    <script
+      src="https://kit.fontawesome.com/8f8488f52c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div class="container">
-        <h2>Login</h2>
-
-        <div >
-      
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-    
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-    
-    
-        <!-- <input type="submit" value="Submit" class="btn-submit"> -->
-        <button class="btn-submit" onclick="onlogin()"> Login</button>
-        
+      <div class="left">
+        <div class="first">
+          <img
+            src="/Frontend/login_signup_pages/images/Time clock vector logo fast service stopwatch template.png"
+            alt=""
+            class="logo"
+          />
+          <p><i>Finally, time tracking your team actually wants to use</i></p>
+          <div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Time Tracking.</b> Easy and intuitive time tracking that
+                captures all your time without changing the way you work.
+              </p>
+            </div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Reports & Analysis.</b> Instantly create reports across
+                projects. Budgets, time, team capacity, cost breakdowns, and
+                more.
+              </p>
+            </div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Invoicing & Payments.</b> Turn tracked time into invoices.
+                Accept online payments. Integrate with QuickBooks and Xero.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h1 class="center">Login to Time-Trace</h1>
+        <div class="form">
+          <div>
+            <label for="email">Email:</label>
+            <i class="fa-solid fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your email..."
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <i class="fa-solid fa-star"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Your password..."
+            />
+          </div>
+          <div class="forgotPass">
+            <div class="checkbox">
+              <input type="checkbox" name="" id="checkboxInp" />
+              <p>Remember me</p>
+            </div>
+            <div class="fp">
+              <p>forgot password</p>
+            </div>
+          </div>
+          <div class="btn">
+            <button onclick="onlogin()">Login</button>
+          </div>
+          <div>
+            <p class="signupLink">
+              Don't have an account?<a href="./register.html"> Signup</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
- </div>
-   </div>
-
-</body>
-<script src="login.js"></script>
+  </body>
+  <script src="./login.js"></script>
 </html>
