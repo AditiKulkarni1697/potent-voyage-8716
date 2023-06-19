@@ -9,16 +9,14 @@ Time Trace is a comprehensive time-tracking app designed to help individuals and
 
 ## Table of Contents
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Authentication](#authentication)
 - [Projects](#projects)
 - [Tasks](#tasks)
 - [Time Recording](#time-recording)
 - [Calendar](#calendar)
 - [Graphs](#graphs)
-- [Contributing](#contributing)
-- [License](#license)
+
+
 
 ## Features
 
