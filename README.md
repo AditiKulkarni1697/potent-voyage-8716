@@ -4,6 +4,13 @@
 
 Deployed Link -https://storied-piroshki-62ee51.netlify.app/index.html
 
+### Team 
+[Aditi Sujlegaonkar]
+[Ankita Barad]
+[Gaurav Asode]
+[Lovely Kumari]
+[Mazhar Iqbal Siddiquee]
+
 
 Time Trace is a comprehensive time-tracking app designed to help individuals and teams efficiently track their work and manage projects. With its user-friendly interface, integration with popular authentication providers, and powerful features like project creation, task management, and detailed time recording, Time Trace offers a seamless experience for tracking and analyzing work hours.
 
