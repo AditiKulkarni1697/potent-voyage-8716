@@ -33,6 +33,9 @@ Time Trace is a comprehensive time-tracking app designed to help individuals and
 
 - **Project Creation**: Users can create projects to categorize their tasks and track time based on specific initiatives. Projects help organize and streamline work-related activities.
 
+ <img src="./Frontend/homepage/images/Screenshot 2023-06-18 200031.png" alt="project">
+ 
+
 - **Task Management**: Within each project, users can create tasks to break down their work into manageable units. Tasks allow for better organization and prioritization of work activities.
 
 - **Task Timer**: Time Trace offers an intuitive task timer feature that allows users to start and stop timers for individual tasks. This helps accurately record the time spent on each task.
@@ -43,6 +46,7 @@ Time Trace is a comprehensive time-tracking app designed to help individuals and
 
 - **Graphical Reports**: To further aid analysis, the app generates insightful graphs based on the recorded time data. These graphs provide a visual representation of productivity patterns, helping users identify trends and make data-driven decisions.
 
+<img src="" alt=""/>
 
 
 
