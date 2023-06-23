@@ -79,4 +79,4 @@ In addition to the calendar view, Time Trace generates graphical reports based o
 
 
 
-Thank you for choosing Time Trace for your time-tracking needs. We hope this app enhances your productivity and helps you effectively manage your projects and tasks. If you have any questions or need assistance, please contact our support team at support@timetrace.com.
+Thank you for choosing Time Trace for your time-tracking needs. We hope this app enhances your productivity and helps you effectively manage your projects and tasks.
