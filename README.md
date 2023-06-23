@@ -46,7 +46,7 @@ Time Trace is a comprehensive time-tracking app designed to help individuals and
 
 - **Graphical Reports**: To further aid analysis, the app generates insightful graphs based on the recorded time data. These graphs provide a visual representation of productivity patterns, helping users identify trends and make data-driven decisions.
 
-<img src="" alt=""/>
+<img src="./Frontend/homepage/images/Screenshot 2023-06-18 200126.png" alt="project">
 
 
 
