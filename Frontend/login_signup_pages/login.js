@@ -7,7 +7,7 @@ const onlogin = async () => {
   };
   console.log(obj);
   try {
-    let url = "http://localhost:9090/user/login";
+    let url = "http://localhost:3300/user/login";
     let responce = await fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),

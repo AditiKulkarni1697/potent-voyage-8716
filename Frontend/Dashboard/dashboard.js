@@ -311,7 +311,7 @@ data1.length = dateRangefordata1;
 console.log(data1.length, dateRangefordata1);
 
 fetch(
-  `http://localhost:9090/timer/data/${formattedStartDate}/${formattedEndDate}`
+  `http://localhost:3300/timer/data/${formattedStartDate}/${formattedEndDate}`
 )
   .then((res) => {
     return res.json();
@@ -367,7 +367,7 @@ $(function () {
       let startdate1 = start.format("YYYY-MM-DD");
       let enddate1 = end.format("YYYY-MM-DD");
 
-      fetch(`http://localhost:9090/timer/data/${startdate1}/${enddate1}`, {
+      fetch(`http://localhost:3300/timer/data/${startdate1}/${enddate1}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
