@@ -182,7 +182,7 @@
         description: document.getElementById("project_description").value,
       };
 
-      fetch("http://localhost:3300/project/create", {
+      fetch("https://time-trace-backend.onrender.com/project/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -192,7 +192,7 @@
         .then((res) => res.json())
         .then((res) => {
           if (res) {
-            fetch("http://localhost:3300/project/", {
+            fetch("https://time-trace-backend.onrender.com/project/", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -217,7 +217,7 @@
       };
       console.log(data);
 
-      fetch("http://localhost:3300/task/create", {
+      fetch("https://time-trace-backend.onrender.com/task/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -234,7 +234,7 @@
     };
 
     window.onload = () => {
-      fetch("http://localhost:3300/project/", {
+      fetch("https://time-trace-backend.onrender.com/project/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

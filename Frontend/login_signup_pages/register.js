@@ -27,7 +27,7 @@ const onsignup = async () => {
   };
   console.log(obj);
   try {
-    let url = "http://localhost:3300/user/register";
+    let url = "https://time-trace-backend.onrender.com/user/register";
     let responce = await fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),
