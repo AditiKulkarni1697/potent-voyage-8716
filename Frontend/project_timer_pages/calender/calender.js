@@ -7,16 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
       center: "title",
       right: "listWeek,timeGridWeek,timeGridDay,dayGridMonth",
     },
-    //events: "http://localhost:3300/calender/isActive", //have more events with diff colors
+    //events: "https://time-trace-backend.onrender.com/calender/isActive", //have more events with diff colors
     eventSources: [
       // your event source
       {
-        url: "http://localhost:3300/calender/isActive", // use the `url` property
+        url: "https://time-trace-backend.onrender.com/calender/isActive", // use the `url` property
         color: "green", // an option!
         textColor: "black", // an option!
       },
       {
-        url: "http://localhost:3300/calender/isNotActive", // use the `url` property
+        url: "https://time-trace-backend.onrender.com/calender/isNotActive", // use the `url` property
         color: "red", // an option!
         textColor: "black", // an option!
       },
