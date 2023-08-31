@@ -43,7 +43,7 @@
     let project = JSON.parse(localStorage.getItem("projectId"));
     let projectId = project.savedTask.projectId;
     window.onload = () => {
-      fetch(`http://localhost:3300/task/tasks/${projectId}`, {
+      fetch(`https://time-trace-backend.onrender.com/task/tasks/${projectId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

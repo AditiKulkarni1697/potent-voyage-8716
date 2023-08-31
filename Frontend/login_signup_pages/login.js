@@ -1,13 +1,26 @@
 let email = document.getElementById("email");
 let password = document.getElementById("password");
 const onlogin = async () => {
-  let obj = {
-    email: email.value,
-    password: password.value,
-  };
+  if (email.value.trim() === "") {
+    alert("Please enter your email.");
+    return;
+  }
+
+  // Validate email format
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email.value)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (password.value.trim() === "") {
+    alert("Please enter your password.");
+    return;
+  }
+
   console.log(obj);
   try {
-    let url = "http://localhost:3300/user/login";
+    let url = "https://time-trace-backend.onrender.com/user/login";
     let responce = await fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),

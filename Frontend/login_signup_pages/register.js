@@ -19,6 +19,49 @@ let password = document.getElementById("password");
 //     console.log(response.json())
 // })
 const onsignup = async () => {
+  if (firstName.value.trim() === "") {
+    alert("Please enter your first name.");
+    return;
+  }
+
+  if (lastName.value.trim() === "") {
+    alert("Please enter your last name.");
+    return;
+  }
+
+  if (email.value.trim() === "") {
+    alert("Please enter your email.");
+    return;
+  }
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email.value)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (password.value.trim() === "") {
+    alert("Please enter your password.");
+    return;
+  }
+
+  // Validate password length, uppercase letter, and special character
+  if (password.value.length < 8) {
+    alert("Password must be at least 8 characters long.");
+    return;
+  }
+
+  if (!/[A-Z]/.test(password.value)) {
+    alert("Password must contain at least one uppercase letter.");
+    return;
+  }
+
+  if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~]/.test(password.value)) {
+    alert("Password must contain at least one special character.");
+    return;
+  }
+
+  console.log(obj);
+
   let obj = {
     firstName: firstName.value,
     lastName: lastName.value,
